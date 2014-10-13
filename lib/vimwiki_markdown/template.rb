@@ -21,7 +21,6 @@ module VimwikiMarkdown
     def get_template_contents
       file = File.open(options.template_filename, "r")
       @template = file.read
-      file.close
     end
 
     def fixtags(template)

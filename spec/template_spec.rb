@@ -12,7 +12,7 @@ module VimwikiMarkdown
       subject { Template.new(options).to_s }
       before do
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
-        allow(File).to receive(:open).and_return(StringIO.new(wiki_template))
+        allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(wiki_template))
       end
 
       it { should have_tag('title', text: 'Index') }
@@ -20,5 +20,3 @@ module VimwikiMarkdown
     end
   end
 end
-
-
