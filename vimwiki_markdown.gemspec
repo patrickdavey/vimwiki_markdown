@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = VimwikiMarkdown::VERSION
   spec.authors       = ["Patrick Davey"]
   spec.email         = ["patrick.davey@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Converts a github flavoured markdown vimwiki file into html.}
+  spec.description   = %q{Converts a vimwiki markdown file to html.  It parses [[links]] and has support for syntax highlighting.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +20,15 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "rspec-its"
+  spec.add_development_dependency "rspec-html-matchers"
+
+  spec.add_runtime_dependency     "activesupport", "~> 4.1.6"
+  spec.add_runtime_dependency     "github-markup"
+  spec.add_runtime_dependency     "github-markdown"
+  spec.add_runtime_dependency     "github-linguist"
+  spec.add_runtime_dependency     "redcarpet"
+  spec.add_runtime_dependency     "html-pipeline"
 end
