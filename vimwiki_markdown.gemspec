@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency     "activesupport", "~> 4.1.6"
   spec.add_runtime_dependency     "github-markup"
   spec.add_runtime_dependency     "github-markdown"
-  spec.add_runtime_dependency     "github-linguist"
-  spec.add_runtime_dependency     "redcarpet"
+  spec.add_runtime_dependency     "github-linguist", "~> 3.1.5"
+  spec.add_runtime_dependency     "redcarpet", "~> 3.1.2"
   spec.add_runtime_dependency     "html-pipeline"
 end

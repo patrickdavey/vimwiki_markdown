@@ -1,14 +1,14 @@
 require 'active_support/inflector'
 
-module VimwikiMarkdown
+module vimwiki
   class Options
     DEFAULTS = ["1", #force - 1/0
                  "markdown",
                  "md",
-                 "/home/patrick/vimwikimarkdown/site_html/",
-                 "/home/patrick/vimwikimarkdown/index.md",
-                 "/home/patrick/vimwikimarkdown/site_html/style.css",
-                 "/home/patrick/vimwikimarkdown/templates/",
+                 "/home/patrick/vimwiki/site_html/",
+                 "/home/patrick/vimwiki/index.md",
+                 "/home/patrick/vimwiki/site_html/style.css",
+                 "/home/patrick/vimwiki/templates/",
                  "default",
                  ".tpl",
                  "-"]
