@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["patrick.davey@gmail.com"]
   spec.summary       = %q{Converts a github flavoured markdown vimwiki file into html.}
   spec.description   = %q{Converts a vimwiki markdown file to html.  It parses [[links]] and has support for syntax highlighting.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/patrickdavey/wimwiki_markdown"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
