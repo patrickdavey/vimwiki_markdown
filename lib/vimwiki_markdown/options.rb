@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-module vimwiki
+module VimwikiMarkdown
   class Options
     DEFAULTS = ["1", #force - 1/0
                  "markdown",

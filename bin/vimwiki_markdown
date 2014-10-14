@@ -1,10 +1,4 @@
 require 'vimwiki_markdown'
 
-module VimwikiMarkdown
-  options = Options.new
-  template_html = Template.new(options)
-  body_html = WikiBody.new(options)
-  combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
+VimwikiMarkdown.convert_wikimardown_to_html
 
-  File.write(options.output_fullpath, combined_body_template)
-end

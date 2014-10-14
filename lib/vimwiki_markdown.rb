@@ -4,6 +4,14 @@ require "vimwiki_markdown/template"
 require "vimwiki_markdown/wiki_body"
 
 module VimwikiMarkdown
-  # Your code goes here...
-  ::I18n.enforce_available_locales = false
+  def self.convert_wikimardown_to_html
+    ::I18n.enforce_available_locales = false
+
+    options = Options.new
+    template_html = Template.new(options)
+    body_html = WikiBody.new(options)
+    combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
+
+    File.write(options.output_fullpath, combined_body_template)
+  end
 end
