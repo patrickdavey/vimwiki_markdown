@@ -19,6 +19,19 @@ Or install it yourself as:
 
     $ gem install vimwiki_markdown
 
+## VimWiki Template
+
+It is a requirement that your template file contain a placeholder
+for the syntax highlighting code to be placed.  In order to do this,
+open up your default.tpl (or whatever your template file is called)
+and ensure that before the closing </head> tag you put
+`%pygments%`
+
+A sample tpl file is available here
+
+
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/patrickdavey/vimwiki_markdown/fork )
