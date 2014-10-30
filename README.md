@@ -27,7 +27,7 @@ open up your default.tpl (or whatever your template file is called)
 and ensure that before the closing </head> tag you put
 `%pygments%`
 
-A sample tpl file is available here
+A sample tpl file is available here https://raw.githubusercontent.com/patrickdavey/vimwiki_markdown/master/example_files/default.tpl
 
 
 
