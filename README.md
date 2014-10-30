@@ -15,6 +15,11 @@ Install the vimwiki_markdown gem
 
     $ gem install vimwiki_markdown
 
+Note, the current version of vimwiki does not allow binaries to be called
+for the generation of html.  This was added on the master branch in [this commit](https://github.com/vimwiki/vimwiki/commit/c1a5bb51adc8cacaa70e2804106817b68295f932)
+
+Currently you will need to make sure you are running the dev branch of vimwiki, or add that commit in yourself
+
 ## Setup
 
 Ensure that your vimiwiki directive in your .vimrc is setup for markdown.  For
