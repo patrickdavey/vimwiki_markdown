@@ -14,5 +14,9 @@ module VimwikiMarkdown
     combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
 
     File.write(options.output_fullpath, combined_body_template)
+
+  rescue MissingRequiredParamError => e
+    warn e.message
+    exit(0)
   end
 end

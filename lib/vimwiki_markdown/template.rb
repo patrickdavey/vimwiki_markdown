@@ -39,7 +39,7 @@ module VimwikiMarkdown
     end
 
     def validate_template
-      raise MissingRequiredParam.new("vimwiki template must contain %pygments% placeholder token") unless @template =~ /%pygments%/
+      raise MissingRequiredParamError.new("ERROR: vimwiki template must contain %pygments% placeholder token.  Please visit https://github.com/patrickdavey/vimwiki_markdown for more information") unless @template =~ /%pygments%/
     end
   end
 end

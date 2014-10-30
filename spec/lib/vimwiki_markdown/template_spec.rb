@@ -27,7 +27,7 @@ module VimwikiMarkdown
 
       it "should raise an invalid exception for missing pygments" do
         allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(template_missing_pygments))
-        expect { Template.new(options).to_s }.to raise_exception(MissingRequiredParam)
+        expect { Template.new(options).to_s }.to raise_exception(MissingRequiredParamError)
       end
     end
   end

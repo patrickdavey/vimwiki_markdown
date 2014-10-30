@@ -1,4 +1,4 @@
 module VimwikiMarkdown
-  class MissingRequiredParam < StandardError
+  class MissingRequiredParamError < StandardError
   end
 end
