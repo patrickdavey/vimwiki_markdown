@@ -5,21 +5,29 @@ to be converted to HTML.
 
 It is currently a work in progress (but working for me ;)
 
-## Installation
+## Requirements
 
-Add this line to your application's Gemfile:
+Ruby installed on your computer
 
-    gem 'vimwiki_markdown'
+    https://www.ruby-lang.org/en/installation/
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install the vimwiki_markdown gem
 
     $ gem install vimwiki_markdown
 
-## VimWiki Template
+## Setup
+
+Ensure that your vimiwiki directive in your .vimrc is setup for markdown.  For
+this we use the custom_wiki2html parameter.  My .vimrc looks like this:
+
+    let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/templates/',
+              \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
+              \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
+              \ 'template_ext': '.tpl'}]
+
+The most important part is the *'custom_wiki2html': 'vimwiki_markdown'*
+
+### VimWiki Template
 
 It is a requirement that your template file contain a placeholder
 for the syntax highlighting code to be placed.  In order to do this,
