@@ -30,8 +30,6 @@ and ensure that before the closing </head> tag you put
 A sample tpl file is available here https://raw.githubusercontent.com/patrickdavey/vimwiki_markdown/master/example_files/default.tpl
 
 
-
-
 ## Contributing
 
 1. Fork it ( https://github.com/patrickdavey/vimwiki_markdown/fork )
@@ -39,3 +37,8 @@ A sample tpl file is available here https://raw.githubusercontent.com/patrickdav
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## License
+
+[MIT License](http://opensource.org/licenses/mit-license.php)
