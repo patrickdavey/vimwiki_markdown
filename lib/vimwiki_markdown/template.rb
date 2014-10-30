@@ -7,6 +7,7 @@ module VimwikiMarkdown
       @options = options
       get_template_contents
 
+      validate_template
     end
 
     def to_s
@@ -24,11 +25,21 @@ module VimwikiMarkdown
     end
 
     def fixtags(template)
-      @template = template.gsub('%title%',title).gsub('%pygments%', Pygments.css('.highlight'))
+      @template = template.gsub('%title%',title).gsub('%pygments%',pygments_wrapped_in_tags)
+    end
+
+    def pygments_wrapped_in_tags
+      "<style type=\"text/css\">
+        #{Pygments.css('.highlight')}
+      </style>"
     end
 
     def title
       options.title
+    end
+
+    def validate_template
+      raise MissingRequiredParam.new("vimwiki template must contain %pygments% placeholder token") unless @template =~ /%pygments%/
     end
   end
 end

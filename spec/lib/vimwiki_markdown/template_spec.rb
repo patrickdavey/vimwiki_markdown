@@ -1,13 +1,14 @@
 require 'spec_helper'
 require 'vimwiki_markdown/options'
 require 'vimwiki_markdown/template'
+require 'vimwiki_markdown/exceptions'
 require 'rspec-html-matchers'
 
 module VimwikiMarkdown
   describe Template do
+    let(:options) { Options.new }
 
     context "template" do
-      let(:options) { Options.new }
 
       subject { Template.new(options).to_s }
       before do
@@ -17,6 +18,17 @@ module VimwikiMarkdown
 
       it { should have_tag('title', text: 'Index') }
       it { should have_tag('h2', text: 'Index') }
+    end
+
+    context "missing pygments" do
+      before do
+        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      end
+
+      it "should raise an invalid exception for missing pygments" do
+        allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(template_missing_pygments))
+        expect { Template.new(options).to_s }.to raise_exception(MissingRequiredParam)
+      end
     end
   end
 end

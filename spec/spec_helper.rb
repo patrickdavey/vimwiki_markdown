@@ -128,9 +128,8 @@ def wiki_template
     </script>
   <title>%title%</title>
   <meta http-equiv="Content-Type" content="text/html; charset=%encoding%">
-  <style>
-    %pygments%
-  </style>
+
+  %pygments%
 </head>
 <body id="%title%">
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -152,4 +151,8 @@ def wiki_template
 </body>
 </html>
 WIKITEMPLATE
+end
+
+def template_missing_pygments
+  wiki_template.gsub!('%pygments%','')
 end
