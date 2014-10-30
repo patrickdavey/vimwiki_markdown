@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", ">= 0.9.12"
   spec.add_development_dependency "rspec-its", "~> 1.1.0"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.6.1"
-  spec.add_development_dependency "guard-rspec", "~> 1.11.0"
+  spec.add_development_dependency "guard-rspec", "~> 4.3"
 
   spec.add_runtime_dependency     "activesupport", "~> 4.1.6"
   spec.add_runtime_dependency     "github-markup", "~> 1.3.0"
