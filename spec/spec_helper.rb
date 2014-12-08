@@ -104,6 +104,9 @@ def wiki_index_markdown
 * [[Ruby]]-- useful Ruby Stuff
 * [[iOS]]-- useful iOS Stuff
 * [[JavaScript]]-- useful JS Stuff
+
+> this is a blockquote
+> without a linebreak
 "
 end
 

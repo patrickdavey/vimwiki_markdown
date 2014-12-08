@@ -17,5 +17,9 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).to match(/<a href="books.html">Books<\/a>/)
     end
 
+    it "must not put a break tag in a blockquote" do
+      expect(wiki_body.to_s).not_to match(/blockquote<br>/)
+    end
+
   end
 end
