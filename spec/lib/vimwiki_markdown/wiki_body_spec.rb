@@ -18,6 +18,7 @@ module VimwikiMarkdown
     end
 
     it "must not put a break tag in a blockquote" do
+      binding.pry
       expect(wiki_body.to_s).not_to match(/blockquote<br>/)
     end
 
