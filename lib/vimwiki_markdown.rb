@@ -9,6 +9,13 @@ module VimwikiMarkdown
     ::I18n.enforce_available_locales = false
 
     options = Options.new
+
+
+    # template should contain a placeholder for the timestamp of the markdown file
+    # we then render into the html file (output_fullpath?) the timestamp of the markdown
+    # file.  Then we can check whether it is different and skip it.
+
+
     template_html = Template.new(options)
     body_html = WikiBody.new(options)
     combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
