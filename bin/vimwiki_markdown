@@ -1,4 +1,4 @@
 require 'vimwiki_markdown'
 
-VimwikiMarkdown.convert_wikimardown_to_html
+VimwikiMarkdown.convert_wikimarkdown_to_html
 
