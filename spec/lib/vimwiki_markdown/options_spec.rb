@@ -23,16 +23,16 @@ module VimwikiMarkdown
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
       end
 
-      it "#already_generated? should return false if the file does not exist" do
+      it "#unmodified? should return false if the file does not exist" do
         allow(File).to receive(:exist?).with(path) { false }
-        expect(options.already_generated?).to be(false)
+        expect(options.unmodified?).to be(false)
       end
 
-      it "#already_generated? should return true" do
+      it "#unmodified? should return true" do
         allow(File).to receive(:exist?).with(path) { true }
         allow(File).to receive(:mtime).with(path) { Date.today }
         allow(File).to receive(:mtime).with(options.input_file) { Date.today - 1 }
-        expect(options.already_generated?).to be(true)
+        expect(options.unmodified?).to be(true)
       end
     end
   end
