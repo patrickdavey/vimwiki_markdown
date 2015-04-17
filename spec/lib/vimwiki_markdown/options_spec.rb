@@ -3,7 +3,7 @@ require 'vimwiki_markdown/options'
 
 module VimwikiMarkdown
   describe Options do
-    subject { Options.new }
+    let(:options) { Options.new }
 
     context "no options passed" do
       before do
@@ -14,6 +14,26 @@ module VimwikiMarkdown
       its(:syntax) { should eq('markdown') }
       its(:output_fullpath) { should eq("#{subject.output_dir}#{subject.title.parameterize}.html") }
       its(:template_filename) { should eq('/home/patrick/vimwiki/templates/default.tpl') }
+    end
+
+    context "with an already existing html output" do
+      let(:path) { options.output_fullpath }
+
+      before do
+        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      end
+
+      it "#already_generated? should return false if the file does not exist" do
+        allow(File).to receive(:exist?).with(path) { false }
+        expect(options.already_generated?).to be(false)
+      end
+
+      it "#already_generated? should return true" do
+        allow(File).to receive(:exist?).with(path) { true }
+        allow(File).to receive(:mtime).with(path) { Date.today }
+        allow(File).to receive(:mtime).with(options.input_file) { Date.today - 1 }
+        expect(options.already_generated?).to be(true)
+      end
     end
   end
 end
