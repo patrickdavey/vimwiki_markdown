@@ -5,9 +5,8 @@ require "vimwiki_markdown/wiki_body"
 require "vimwiki_markdown/exceptions"
 
 module VimwikiMarkdown
-  def self.convert_wikimarkdown_to_html
+  def self.convert_wikimarkdown_to_html(options = Options.new)
     ::I18n.enforce_available_locales = false
-    options = Options.new
 
     if options.unmodified?
       exit(0)

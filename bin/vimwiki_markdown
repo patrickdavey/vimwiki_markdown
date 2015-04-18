@@ -1,4 +1,17 @@
-require 'vimwiki_markdown'
+require 'drb/drb'
+require "vimwiki_markdown/options"
 
-VimwikiMarkdown.convert_wikimarkdown_to_html
+options = VimwikiMarkdown::Options.new
 
+# The URI to connect to
+SERVER_URI="druby://localhost:8787"
+
+# Start a local DRbServer to handle callbacks.
+#
+# Not necessary for this small example, but will be required
+# as soon as we pass a non-marshallable object as an argument
+# to a dRuby call.
+DRb.start_service
+
+vimwiki_service = DRbObject.new_with_uri(SERVER_URI)
+vimwiki_service.generate_html(options)
