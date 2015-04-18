@@ -7,7 +7,6 @@ URI="druby://localhost:8787"
 class VimwikiMarkdownService
 
   def generate_html(options)
-    puts "called with #{options.inspect}"
     VimwikiMarkdown.convert_wikimarkdown_to_html(options)
   end
 
@@ -16,7 +15,7 @@ end
 # The object that handles requests on the server
 FRONT_OBJECT=VimwikiMarkdownService.new
 
-$SAFE = 1   # disable eval() and friends
+# $SAFE = 1   # disable eval() and friends
 
 DRb.start_service(URI, FRONT_OBJECT)
 # Wait for the drb server thread to finish before exiting.

@@ -8,9 +8,7 @@ module VimwikiMarkdown
   def self.convert_wikimarkdown_to_html(options = Options.new)
     ::I18n.enforce_available_locales = false
 
-    if options.unmodified?
-      exit(0)
-    else
+    if !options.unmodified?
       template_html = Template.new(options)
       body_html = WikiBody.new(options)
       combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
