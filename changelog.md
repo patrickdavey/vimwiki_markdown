@@ -1,3 +1,8 @@
+## 0.0.7 [April 18th 2015]
+
+* Add the ability to skip files based on mtime
+  In order to do this you need to stop vimwiki from deleting the old ones
+
 ## 0.0.4 [Dec 9th 2014]
 * Use Github::Markup to prerender the markdown
 
