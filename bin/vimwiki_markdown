@@ -1,6 +1,31 @@
 require 'drb/drb'
 require "vimwiki_markdown/options"
 
+def port_open?(ip, port, timeout)
+  start_time = Time.now
+  current_time = start_time
+  while (current_time - start_time) <= timeout
+   begin
+    TCPSocket.new(ip, port)
+    return true
+   rescue Errno::ECONNREFUSED
+    sleep 0.1
+   end
+   current_time = Time.now
+  end
+
+  return false
+end
+
+unless port_open?("127.0.0.1", 8787, 1)
+  server = fork do
+    exec "vimwiki_server"
+  end
+
+  Process.detach(server)
+  sleep(1)
+end
+
 options = VimwikiMarkdown::Options.new
 
 # The URI to connect to
