@@ -1,42 +1,4 @@
-require 'drb/drb'
-require "vimwiki_markdown/options"
+require 'vimwiki_markdown'
 
-def port_open?(ip, port, timeout)
-  start_time = Time.now
-  current_time = start_time
-  while (current_time - start_time) <= timeout
-   begin
-    TCPSocket.new(ip, port)
-    return true
-   rescue Errno::ECONNREFUSED
-    sleep 0.1
-   end
-   current_time = Time.now
-  end
+VimwikiMarkdown.convert_wikimarkdown_to_html
 
-  return false
-end
-
-unless port_open?("127.0.0.1", 8787, 1)
-  server = fork do
-    exec "vimwiki_server"
-  end
-
-  Process.detach(server)
-  sleep(1)
-end
-
-options = VimwikiMarkdown::Options.new
-
-# The URI to connect to
-SERVER_URI="druby://localhost:8787"
-
-# Start a local DRbServer to handle callbacks.
-#
-# Not necessary for this small example, but will be required
-# as soon as we pass a non-marshallable object as an argument
-# to a dRuby call.
-DRb.start_service
-
-vimwiki_service = DRbObject.new_with_uri(SERVER_URI)
-vimwiki_service.generate_html(options)

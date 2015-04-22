@@ -72,13 +72,6 @@ module VimwikiMarkdown
       "#{output_dir}#{title.parameterize}.html"
     end
 
-    def unmodified?
-      return false unless File.exist?(output_fullpath)
-
-      File.mtime(input_file) < File.mtime(output_fullpath)
-    end
-
-
     private
 
     def arguments

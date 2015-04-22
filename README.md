@@ -20,12 +20,6 @@ for the generation of html.  This was added on the master branch in [this commit
 
 Currently you will need to make sure you are running the dev branch of vimwiki, or add that commit in yourself
 
-## Druby
-
-The version 0.1 introduced Druby which we use to greatly speed up the process.  You might want to stick
-with the 0.0.x version if things get interesting.
-
-
 ## Setup
 
 Ensure that your vimiwiki directive in your .vimrc is setup for markdown.  For
