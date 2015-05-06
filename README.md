@@ -1,4 +1,5 @@
 # VimwikiMarkdown
+[![Code Climate](https://codeclimate.com/github/patrickdavey/vimwiki_markdown/badges/gpa.svg)](https://codeclimate.com/github/patrickdavey/vimwiki_markdown)
 
 This gem allows vimwiki pages written in (github enhanced) markdown
 to be converted to HTML.
