@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'vimwiki_markdown'
 
 VimwikiMarkdown.convert_wikimarkdown_to_html
