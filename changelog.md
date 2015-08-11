@@ -1,3 +1,6 @@
+## 0.1.3 [August 11th 2015]
+* Adding the TableOfContents filter so that bookmarks are created.
+
 ## 0.1.1 [April 22nd 2015]
 * Aaaaannnnd reverting that change.  While it totally works, it probably
   is overkill to have Druby running.  The major issue is that vimwiki

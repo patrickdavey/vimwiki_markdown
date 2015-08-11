@@ -13,7 +13,8 @@ class VimwikiMarkdown::WikiBody
     fixlinks
     github_markup = GitHub::Markup.render('README.markdown', markdown_body)
     pipeline = HTML::Pipeline.new [
-      HTML::Pipeline::SyntaxHighlightFilter
+      HTML::Pipeline::SyntaxHighlightFilter,
+      HTML::Pipeline::TableOfContentsFilter
     ]
     result = pipeline.call(github_markup)
     result[:output].to_s
