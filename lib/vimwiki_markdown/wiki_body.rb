@@ -31,6 +31,12 @@ class VimwikiMarkdown::WikiBody
   end
 
   def fixlinks
+    # convert links that are already markdown to include html extension
+    @markdown_body.gsub!(/\[(.*?)\]\((.*?)\)/) do
+      link_text = Regexp.last_match[1]
+      link_title = Regexp.last_match[2]
+      "[#{link_text}](#{link_title.parameterize}.html)"
+    end
     #convert wiki_links to markdown links
     # [This link](http://example.net/)
     @markdown_body.gsub!(/\[\[(.*?)\]\]/) do
