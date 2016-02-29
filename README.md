@@ -8,18 +8,13 @@ It is currently a work in progress (but working for me ;)
 
 ## Requirements
 
-Ruby installed on your computer
+Ruby installed on your computer & up to date version of vimwiki
 
     https://www.ruby-lang.org/en/installation/
 
 Install the vimwiki_markdown gem
 
     $ gem install vimwiki_markdown
-
-Note, the current version of vimwiki does not allow binaries to be called
-for the generation of html.  This was added on the master branch in [this commit](https://github.com/vimwiki/vimwiki/commit/c1a5bb51adc8cacaa70e2804106817b68295f932)
-
-Currently you will need to make sure you are running the dev branch of vimwiki, or add that commit in yourself
 
 ## Setup
 
