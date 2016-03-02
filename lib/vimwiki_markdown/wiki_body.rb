@@ -43,11 +43,9 @@ class VimwikiMarkdown::WikiBody
       path = Regexp.last_match[:path]
 
       if vimwiki_markdown_file_exists?(path)
-        warn("\n\nXXXX file #{path} exists")
         path = Pathname.new(path)
         "[#{title}](#{path.dirname + path.basename(options.extension).to_s.parameterize}.html)"
       else
-        warn("\n\nfile #{path} doesn't exist")
         "[#{title}](#{path})"
       end
     end

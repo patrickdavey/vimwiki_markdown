@@ -72,6 +72,19 @@ module VimwikiMarkdown
             allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file})")
             expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
           end
+
+          context "going back up a directory" do
+            let(:existing_file) { "test.md" }
+            let(:wiki_body) { WikiBody.new(instance_double("Options", {
+              input_file: temp_wiki_dir + "subdirectory/input.md",
+              extension: "md"
+            })) }
+
+            it "must convert sub-directory markdown links correctly" do
+              allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](../#{existing_file_no_extension})")
+              expect(wiki_body.to_s).to have_tag('a', :with => { :href => "../#{existing_file_no_extension}.html" })
+            end
+          end
         end
 
         # context "es" do
