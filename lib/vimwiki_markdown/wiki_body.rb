@@ -3,6 +3,7 @@ require 'github/markup'
 require 'html/pipeline'
 
 class VimwikiMarkdown::WikiBody
+  MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<path>.*)\)/
 
   def initialize(options)
     @options = options
@@ -31,8 +32,30 @@ class VimwikiMarkdown::WikiBody
   end
 
   def fixlinks
-    #convert wiki_links to markdown links
-    # [This link](http://example.net/)
+    convert_markdown_local_links!
+    convert_wiki_style_links!
+  end
+
+  def convert_markdown_local_links!
+    @markdown_body.gsub!(MARKDOWN_LINK_REGEX) do |match|
+      title = Regexp.last_match[:title]
+      path = Regexp.last_match[:path]
+
+      if vimwiki_markdown_file_exists?(path)
+        "[#{title}](#{title.parameterize}.html)"
+      else
+        "[#{title}](#{path})"
+      end
+    end
+  end
+
+  def vimwiki_markdown_file_exists?(path)
+    File.exist?(Pathname(options.input_file).dirname + path) ||
+    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.template_ext}")
+  end
+
+  def convert_wiki_style_links!
+    # convert [[style]] links
     @markdown_body.gsub!(/\[\[(.*?)\]\]/) do
       link_title = Regexp.last_match[1]
       "[#{link_title}](#{link_title.parameterize}.html)"

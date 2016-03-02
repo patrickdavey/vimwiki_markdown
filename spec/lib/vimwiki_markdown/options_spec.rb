@@ -13,7 +13,7 @@ module VimwikiMarkdown
       its(:force) { should be(true) }
       its(:syntax) { should eq('markdown') }
       its(:output_fullpath) { should eq("#{subject.output_dir}#{subject.title.parameterize}.html") }
-      its(:template_filename) { should eq('/home/patrick/vimwiki/templates/default.tpl') }
+      its(:template_filename) { should eq('~/vimwiki/templates/default.tpl') }
     end
   end
 end
