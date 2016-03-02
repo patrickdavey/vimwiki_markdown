@@ -94,9 +94,22 @@ module VimwikiMarkdown
               extension: "md"
             })) }
 
-            it "must convert absolute paths to relative correctly" do
+            it "must convert absolute paths correctly" do
               allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](/#{existing_file_no_extension})")
               expect(wiki_body.to_s).to have_tag('a', :with => { :href => "/#{existing_file_no_extension}.html" })
+            end
+
+            context "from the root directory" do
+              let(:wiki_body) { WikiBody.new(instance_double("Options", {
+                input_file: temp_wiki_dir + "input.md",
+                root_path: ".",
+                extension: "md"
+              })) }
+
+              it "must convert absolute paths correctly" do
+                allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](/#{existing_file_no_extension})")
+                expect(wiki_body.to_s).to have_tag('a', :with => { :href => "/#{existing_file_no_extension}.html" })
+              end
             end
           end
         end

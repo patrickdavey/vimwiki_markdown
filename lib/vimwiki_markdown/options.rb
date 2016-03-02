@@ -53,6 +53,7 @@ module VimwikiMarkdown
       @template_default = arguments[TEMPLATE_DEFAULT]
       @template_ext = arguments[TEMPLATE_EXT]
       @root_path = arguments[ROOT_PATH]
+      @root_path = "." if @root_path == "-"
       raise "Must be markdown" unless syntax == 'markdown'
     end
 

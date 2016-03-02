@@ -42,7 +42,7 @@ class VimwikiMarkdown::WikiBody
       title = Regexp.last_match[:title]
       path = Regexp.last_match[:path]
 
-      if vimwiki_markdown_file_exists?(path)
+      if vimwiki_markdown_file_exists?(Pathname.new(path))
         path = Pathname.new(path)
         "[#{title}](#{path.dirname + path.basename(options.extension).to_s.parameterize}.html)"
       else
@@ -53,7 +53,8 @@ class VimwikiMarkdown::WikiBody
 
   def vimwiki_markdown_file_exists?(path)
     File.exist?(Pathname(options.input_file).dirname + path) ||
-    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.extension}")
+    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.extension}") ||
+    absolute_path_exists?(path)
   end
 
   def convert_wiki_style_links!
@@ -62,5 +63,11 @@ class VimwikiMarkdown::WikiBody
       link_title = Regexp.last_match[1]
       "[#{link_title}](#{link_title.parameterize}.html)"
     end
+  end
+
+  def absolute_path_exists?(path)
+    path.absolute? && (
+      File.exist?(options.input_file.dirname + options.root_path + path.to_s.sub(/^\//,"")) ||
+      File.exist?(options.input_file.dirname + options.root_path + path.to_s.sub(/^\//,"").sub(/$/, ".#{options.extension}")))
   end
 end
