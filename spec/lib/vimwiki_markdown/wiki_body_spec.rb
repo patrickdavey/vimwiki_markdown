@@ -85,16 +85,21 @@ module VimwikiMarkdown
               expect(wiki_body.to_s).to have_tag('a', :with => { :href => "../#{existing_file_no_extension}.html" })
             end
           end
-        end
 
-        # context "es" do
-        #   it "must convert same-directory markdown links correctly" do
-        #     allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file_no_extension})")
-        #     expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
-        #     allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](test.md)")
-        #     expect(wiki_body.to_s).to have_tag('a', :with => { :href => "test.html" })
-        #   end
-        # end
+          context "absolute linked paths" do
+            let(:existing_file) { "test.md" }
+            let(:wiki_body) { WikiBody.new(instance_double("Options", {
+              input_file: temp_wiki_dir + "subdirectory/input.md",
+              root_path: "../",
+              extension: "md"
+            })) }
+
+            it "must convert absolute paths to relative correctly" do
+              allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](/#{existing_file_no_extension})")
+              expect(wiki_body.to_s).to have_tag('a', :with => { :href => "/#{existing_file_no_extension}.html" })
+            end
+          end
+        end
       end
     end
   end
