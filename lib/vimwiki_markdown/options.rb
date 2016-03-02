@@ -5,13 +5,13 @@ module VimwikiMarkdown
     DEFAULTS = ["1", #force - 1/0
                  "markdown",
                  "md",
-                 "/home/patrick/vimwiki/site_html/",
-                 "/home/patrick/vimwiki/index.md",
-                 "/home/patrick/vimwiki/site_html/style.css",
-                 "/home/patrick/vimwiki/templates/",
+                 "~/vimwiki/site_html/",
+                 "~/vimwiki/index.md",
+                 "~/vimwiki/site_html/style.css",
+                 "~/vimwiki/templates/",
                  "default",
                  ".tpl",
-                 "-"]
+                 "-"].freeze
 
     FORCE            = 0
     SYNTAX           = 1
