@@ -28,7 +28,7 @@ module VimwikiMarkdown
 
 
     describe "markdown style links" do
-      let(:wiki_body) { WikiBody.new(instance_double("Options", template_ext: "md", input_file: "blah.md")) }
+      let(:wiki_body) { WikiBody.new(instance_double("Options", extension: "md", input_file: "blah.md")) }
 
       it "must convert normal links correctly" do
         allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[google](http://www.google.com)")
@@ -38,14 +38,15 @@ module VimwikiMarkdown
       context "with an existing markdown file matching name" do
         let(:wiki_body) { WikiBody.new(instance_double("Options", {
           input_file: temp_wiki_dir + "input.md",
-          template_ext: "md"
+          extension: "md"
         })) }
         let(:existing_file) { "test.md" }
-        let(:existing_file_no_extension) { File.basename(existing_file, ".md") }
+        let(:existing_file_no_extension) { existing_file.gsub(/.md$/,"") }
         let(:temp_wiki_dir) { Pathname.new(Dir.mktmpdir("temp_wiki_")) }
 
         before(:each) do
           # here we create a stub test filename in the directory,
+          FileUtils.mkdir_p((temp_wiki_dir + existing_file).dirname)
           FileUtils.touch(temp_wiki_dir + existing_file)
         end
 
@@ -53,12 +54,34 @@ module VimwikiMarkdown
           FileUtils.rm_r(temp_wiki_dir)
         end
 
-        it "must convert markdown links correctly" do
+        it "must convert same-directory markdown links correctly" do
           allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file_no_extension})")
           expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
-          allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](test.md)")
-          expect(wiki_body.to_s).to have_tag('a', :with => { :href => "test.html" })
+
+          allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file})")
+          expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
         end
+
+        context "subdirectory linked files" do
+          let(:existing_file) { "subdirectory/test.md" }
+
+          it "must convert sub-directory markdown links correctly" do
+            allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file_no_extension})")
+            expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
+
+            allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file})")
+            expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
+          end
+        end
+
+        # context "es" do
+        #   it "must convert same-directory markdown links correctly" do
+        #     allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](#{existing_file_no_extension})")
+        #     expect(wiki_body.to_s).to have_tag('a', :with => { :href => "#{existing_file_no_extension}.html" })
+        #     allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](test.md)")
+        #     expect(wiki_body.to_s).to have_tag('a', :with => { :href => "test.html" })
+        #   end
+        # end
       end
     end
   end

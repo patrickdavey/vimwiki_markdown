@@ -1,6 +1,7 @@
 require 'active_support/inflector'
 require 'github/markup'
 require 'html/pipeline'
+require 'pathname'
 
 class VimwikiMarkdown::WikiBody
   MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<path>.*)\)/
@@ -42,8 +43,11 @@ class VimwikiMarkdown::WikiBody
       path = Regexp.last_match[:path]
 
       if vimwiki_markdown_file_exists?(path)
-        "[#{title}](#{title.parameterize}.html)"
+        warn("\n\nXXXX file #{path} exists")
+        path = Pathname.new(path)
+        "[#{title}](#{path.dirname + path.basename(options.extension).to_s.parameterize}.html)"
       else
+        warn("\n\nfile #{path} doesn't exist")
         "[#{title}](#{path})"
       end
     end
@@ -51,7 +55,7 @@ class VimwikiMarkdown::WikiBody
 
   def vimwiki_markdown_file_exists?(path)
     File.exist?(Pathname(options.input_file).dirname + path) ||
-    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.template_ext}")
+    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.extension}")
   end
 
   def convert_wiki_style_links!
