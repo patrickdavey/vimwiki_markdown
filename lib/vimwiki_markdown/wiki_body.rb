@@ -2,6 +2,7 @@ require 'active_support/inflector'
 require 'github/markup'
 require 'html/pipeline'
 require 'pathname'
+require "vimwiki_markdown/vimwiki_link"
 
 class VimwikiMarkdown::WikiBody
 
@@ -32,14 +33,8 @@ class VimwikiMarkdown::WikiBody
   end
 
   def fixlinks
-    convert_markdown_local_links!
     convert_wiki_style_links!
-  end
-
-  def vimwiki_markdown_file_exists?(path)
-    File.exist?(Pathname(options.input_file).dirname + path) ||
-    File.exist?(Pathname(options.input_file).dirname + "#{path}.#{options.extension}") ||
-    absolute_path_exists?(path)
+    convert_markdown_local_links!
   end
 
   def convert_wiki_style_links!
@@ -50,9 +45,11 @@ class VimwikiMarkdown::WikiBody
     end
   end
 
-  def absolute_path_exists?(path)
-    path.absolute? && (
-      File.exist?(options.input_file.dirname + options.root_path + path.to_s.sub(/^\//,"")) ||
-      File.exist?(options.input_file.dirname + options.root_path + path.to_s.sub(/^\//,"").sub(/$/, ".#{options.extension}")))
+  def convert_markdown_local_links!
+    @markdown_body.gsub!(/\[.*\]\(.*\)/) do |match|
+      VimwikiMarkdown::VimwikiLink.new(match, options.input_file, options.extension, options.root_path).to_s
+    end
+
   end
+
 end

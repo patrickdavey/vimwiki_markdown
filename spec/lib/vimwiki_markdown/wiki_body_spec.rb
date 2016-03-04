@@ -6,7 +6,8 @@ require 'rspec-html-matchers'
 module VimwikiMarkdown
   describe WikiBody do
 
-    let(:wiki_body) { WikiBody.new(double(:options)) }
+    let(:wiki_body) { WikiBody.new(double(:options,
+      input_file: 'blah', extension: 'md', root_path: '-')) }
     let(:markdown_file_content) { wiki_index_markdown }
 
     before do

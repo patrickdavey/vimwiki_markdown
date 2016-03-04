@@ -23,6 +23,10 @@ module VimwikiMarkdown
     end
 
 
+    def to_s
+      "[#{title}](#{uri})"
+    end
+
     private
 
     def rewrite_local_links!
@@ -30,7 +34,7 @@ module VimwikiMarkdown
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
       else
-        "[#{title}](#{path})"
+        "[#{title}](#{uri})"
       end
     end
 
