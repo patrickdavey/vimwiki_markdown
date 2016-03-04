@@ -71,25 +71,24 @@ module VimwikiMarkdown
         let(:root_path) { "../"}
 
         it "must convert absolute paths correctly" do
+          link = VimwikiLink.new("[test](/test.md)", source_filepath, markdown_extension, root_path)
+          expect(link.uri).to eq("/test.html")
+        end
+
+        it "must convert absolute paths without extension correctly" do
           link = VimwikiLink.new("[test](/test)", source_filepath, markdown_extension, root_path)
           expect(link.uri).to eq("/test.html")
         end
-      end
-=begin
-          context "from the root directory" do
-            let(:wiki_body) { WikiBody.new(instance_double("Options", {
-              input_file: temp_wiki_dir + "input.md",
-              root_path: ".",
-              extension: "md"
-            })) }
 
-            it "must convert absolute paths correctly" do
-              allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[test](/#{existing_file_no_extension})")
-              expect(wiki_body.to_s).to have_tag('a', :with => { :href => "/#{existing_file_no_extension}.html" })
-            end
+        context "from the root directory" do
+          let(:source_filepath) { temp_wiki_dir + "index.md" }
+
+          it "must convert absolute paths correctly" do
+            link = VimwikiLink.new("[test](/test)", source_filepath, markdown_extension, ".")
+            expect(link.uri).to eq("/test.html")
           end
         end
-=end
       end
+    end
   end
 end
