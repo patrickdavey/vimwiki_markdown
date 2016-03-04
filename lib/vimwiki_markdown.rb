@@ -1,6 +1,7 @@
 require "vimwiki_markdown/version"
 require "vimwiki_markdown/options"
 require "vimwiki_markdown/template"
+require "vimwiki_markdown/vimwiki_link"
 require "vimwiki_markdown/wiki_body"
 require "vimwiki_markdown/exceptions"
 

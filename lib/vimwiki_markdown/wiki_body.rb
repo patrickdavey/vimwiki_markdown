@@ -4,7 +4,6 @@ require 'html/pipeline'
 require 'pathname'
 
 class VimwikiMarkdown::WikiBody
-  MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<path>.*)\)/
 
   def initialize(options)
     @options = options
@@ -35,20 +34,6 @@ class VimwikiMarkdown::WikiBody
   def fixlinks
     convert_markdown_local_links!
     convert_wiki_style_links!
-  end
-
-  def convert_markdown_local_links!
-    @markdown_body.gsub!(MARKDOWN_LINK_REGEX) do |match|
-      title = Regexp.last_match[:title]
-      path = Regexp.last_match[:path]
-
-      if vimwiki_markdown_file_exists?(Pathname.new(path))
-        path = Pathname.new(path)
-        "[#{title}](#{path.dirname + path.basename(options.extension).to_s.parameterize}.html)"
-      else
-        "[#{title}](#{path})"
-      end
-    end
   end
 
   def vimwiki_markdown_file_exists?(path)
