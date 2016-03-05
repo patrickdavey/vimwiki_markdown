@@ -33,15 +33,24 @@ class VimwikiMarkdown::WikiBody
   end
 
   def fixlinks
+    convert_wiki_style_links_with_title_bar!
     convert_wiki_style_links!
     convert_markdown_local_links!
   end
 
+  def convert_wiki_style_links_with_title_bar!
+    wiki_bar = /\[\[(?<source>.*)\|(?<title>.*)\]\]/
+    @markdown_body.gsub!(wiki_bar) do
+      source = Regexp.last_match[:source]
+      title = Regexp.last_match[:title]
+      "[#{title}](#{source})"
+    end
+  end
+
   def convert_wiki_style_links!
-    # convert [[style]] links
     @markdown_body.gsub!(/\[\[(.*?)\]\]/) do
-      link_title = Regexp.last_match[1]
-      "[#{link_title}](#{link_title.parameterize}.html)"
+      link= Regexp.last_match[1]
+      "[#{link}](#{link})"
     end
   end
 
