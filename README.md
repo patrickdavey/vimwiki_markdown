@@ -59,6 +59,9 @@ A sample tpl file is available here https://raw.githubusercontent.com/patrickdav
 
 ## Contributing
 
+Pull requests are very welcome, especially if you want to implement some of the
+more interesting vimwiki links (e.g. :local etc.)
+
 1. Fork it ( https://github.com/patrickdavey/vimwiki_markdown/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
