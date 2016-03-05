@@ -1,3 +1,10 @@
+## 0.2.0 [March 6th 2016]
+* Adds the ability for `[[source|title]]` style links to be parsed correctly
+* Allows links with subdirectories `[[path/in/a/subdir/file]]` links to work
+* Also allows vimwiki links formatted with markdown syntax to work, this
+  feature is currently implemented on the dev branch. This means you can
+  link to [my markdownfile](blah.md) and it'll be parsed correctly
+
 ## 0.1.3 [August 11th 2015]
 * Adding the TableOfContents filter so that bookmarks are created.
 
