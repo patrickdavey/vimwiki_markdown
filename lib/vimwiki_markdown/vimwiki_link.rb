@@ -33,8 +33,6 @@ module VimwikiMarkdown
       if vimwiki_markdown_file_exists?
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
-      else
-        "[#{title}](#{uri})"
       end
     end
 
