@@ -28,10 +28,6 @@ this we use the custom_wiki2html parameter.  My .vimrc looks like this:
 
 The most important part is the *'custom_wiki2html': 'vimwiki_markdown'*
 
-###  Note for ruby 2.2
-This gem doesn't seem to work on 2.2 on osx.. seems to be a github/markup gem issue as near as I can tell.
-For the moment.. use 2.1 or lower if you run into issues.
-
 ### Fix for vimwiki links.
 In vimwiki at the moment, it deletes any files in the site_html directory which do not match
 against the markdown files (once they are translated into linked html).  Now, in vimwiki_markdown
