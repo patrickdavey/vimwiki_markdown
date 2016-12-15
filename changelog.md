@@ -1,3 +1,6 @@
+## 0.2.1 [December 15th 2016]
+Allow %root_path% substitution in template file.
+
 ## 0.2.0 [March 6th 2016]
 * Adds the ability for `[[source|title]]` style links to be parsed correctly
 * Allows links with subdirectories `[[path/in/a/subdir/file]]` links to work
