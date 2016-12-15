@@ -52,6 +52,12 @@ and ensure that before the closing </head> tag you put
 
 A sample tpl file is available here https://raw.githubusercontent.com/patrickdavey/vimwiki_markdown/master/example_files/default.tpl
 
+#### Optional %root_html% marker.
+
+You can also have a `%root_html%` marker in your template file, thanks
+to [this commit](https://github.com/patrickdavey/vimwiki_markdown/commit/8645883b96df9962aba616d0d12961285cd3f4d7).
+It will get rewritten with the relative path to the root
+of the site (e.g. `./` or `../../` etc)
 
 ## Contributing
 
