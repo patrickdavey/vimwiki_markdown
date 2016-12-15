@@ -30,5 +30,19 @@ module VimwikiMarkdown
         expect { Template.new(options).to_s }.to raise_exception(MissingRequiredParamError)
       end
     end
+
+    context "using %root_path%" do
+      before do
+        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      end
+
+      it "correctly substitute %root_path%" do
+        allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(wiki_template))
+
+        rendered_template = Template.new(options).to_s
+        expect(rendered_template).not_to include("%root_path%")
+        expect(rendered_template).to include("./rootStyle.css")
+      end
+    end
   end
 end
