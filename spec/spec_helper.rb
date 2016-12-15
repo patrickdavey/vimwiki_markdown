@@ -121,6 +121,10 @@ def wiki_template
     <link type="text/css" rel="stylesheet" href="./overrides.css" />
     <link type="text/css" rel="stylesheet" href="./styles/shCore.css" />
     <link type="text/css" rel="stylesheet" href="./styles/shThemeDefault.css" />
+
+    <!-- for testing %ROOT_PATH% substitutions -->
+    <link type="text/css" rel="stylesheet" href="%root_path%/rootStyle.css" />
+
     <script type="text/javascript" src="./scripts/shCore.js"></script>
     <script type="text/javascript" src="./scripts/shBrushRuby.js"></script>
     <script type="text/javascript" src="./scripts/shObjectiveC.js"></script>
