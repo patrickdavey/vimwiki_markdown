@@ -26,12 +26,17 @@ module VimwikiMarkdown
 
     def fixtags(template)
       @template = template.gsub('%title%',title).gsub('%pygments%',pygments_wrapped_in_tags)
+      @template = @template.gsub('%root_path%', root_path)
     end
 
     def pygments_wrapped_in_tags
       "<style type=\"text/css\">
         #{Pygments.css('.highlight')}
       </style>"
+    end
+
+    def root_path
+      options.root_path
     end
 
     def title
