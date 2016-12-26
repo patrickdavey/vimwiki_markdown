@@ -55,10 +55,9 @@ class VimwikiMarkdown::WikiBody
   end
 
   def convert_markdown_local_links!
-    @markdown_body.gsub!(/\[.*\]\(.*\)/) do |match|
+    @markdown_body = @markdown_body.gsub(/\[.*?\]\(.*?\)/) do |match|
       VimwikiMarkdown::VimwikiLink.new(match, options.input_file, options.extension, options.root_path).to_s
     end
-
   end
 
 end

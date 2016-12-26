@@ -1,3 +1,6 @@
+## 0.2.3 [December 15th 2016]
+Bugfix - multiple links on the same line were not processed correctly.
+
 ## 0.2.1 [December 15th 2016]
 Allow %root_path% substitution in template file.
 
