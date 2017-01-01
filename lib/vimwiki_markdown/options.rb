@@ -45,7 +45,7 @@ module VimwikiMarkdown
     def initialize
       @force = arguments[FORCE] == "1" ? true : false
       @syntax = arguments[SYNTAX]
-      @extension = arguments[EXTENSION]
+      @extension = ".#{arguments[EXTENSION]}"
       @output_dir = arguments[OUTPUT_DIR]
       @input_file = arguments[INPUT_FILE]
       @css_file = arguments[CSS_FILE]

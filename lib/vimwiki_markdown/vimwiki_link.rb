@@ -37,16 +37,16 @@ module VimwikiMarkdown
     end
 
     def vimwiki_markdown_file_exists?
-      File.exist?(source_markdown_directory + uri) ||
-      File.exist?(source_markdown_directory + "#{uri}.#{markdown_extension}") ||
-      absolute_path_exists?
+      File.exist?((source_markdown_directory + uri).sub_ext(markdown_extension)) ||
+      absolute_path_to_markdown_file_exists?
     end
 
-    def absolute_path_exists?
+    def absolute_path_to_markdown_file_exists?
       path = Pathname(uri)
-      path.absolute? && (
-        File.exist?(source_markdown_directory + root_path + path.to_s.sub(/^\//,"")) ||
-        File.exist?(source_markdown_directory + root_path + path.to_s.sub(/^\//,"").sub(/$/, ".#{markdown_extension}")))
+      filepath = Pathname.new(source_markdown_directory + root_path + path.to_s.sub(/^\//,"")).
+                 sub_ext(markdown_extension)
+
+      path.absolute? && File.exist?(filepath)
     end
   end
 end
