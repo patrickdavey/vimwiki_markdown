@@ -1,3 +1,8 @@
+## 0.2.4 [Jan 01 2017]
+Make directory links work correctly. If you now link to
+a directory [somedir](somedir/) then that link will be preserved
+correctly.
+
 ## 0.2.3 [December 15th 2016]
 Bugfix - multiple links on the same line were not processed correctly.
 

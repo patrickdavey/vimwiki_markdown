@@ -4,7 +4,7 @@ module VimwikiMarkdown
   describe VimwikiLink do
     let(:markdown_link) { "[title](http://www.google.com)" }
     let(:source_filepath) { "unimportant" }
-    let(:markdown_extension) { "md" }
+    let(:markdown_extension) { ".md" }
     let(:root_path) { "-" }
 
     it "should leave external links alone" do
@@ -14,8 +14,8 @@ module VimwikiMarkdown
     end
 
     context "with an existing markdown file matching name" do
-      let(:existing_file) { "test.#{markdown_extension}" }
-      let(:existing_file_no_extension) { existing_file.gsub(/\.#{markdown_extension}$/,"") }
+      let(:existing_file) { "test#{markdown_extension}" }
+      let(:existing_file_no_extension) { existing_file.gsub(/#{markdown_extension}$/,"") }
       let(:temp_wiki_dir) { Pathname.new(Dir.mktmpdir("temp_wiki_")) }
       let(:markdown_link) { "[test](#{existing_file})" }
       let(:source_filepath) { temp_wiki_dir + "index.md" }
@@ -52,6 +52,14 @@ module VimwikiMarkdown
           expect(link.title).to eq("test")
           expect(link.uri).to eq("#{existing_file_no_extension}.html")
         end
+
+        it "must convert directory links correctly" do
+          markdown_link =  "[subdirectory](subdirectory/)"
+          link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
+          expect(link.title).to eq("subdirectory")
+          expect(link.uri).to eq("subdirectory/")
+        end
+
       end
 
       context "../ style links" do
