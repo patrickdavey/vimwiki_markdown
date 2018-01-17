@@ -38,6 +38,18 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).to match(/<a href="here.html">here<\/a>/)
       expect(wiki_body.to_s).to match(/<a href="there.html">there<\/a>/)
     end
+
+    it "must remove template tags" do
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("%template test\n")
+      expect(wiki_body.to_s).not_to match(/%template/)
+      expect(wiki_body.to_s).not_to match(/test/)
+    end
+
+    it "must remove title tags" do
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("%title test\n")
+      expect(wiki_body.to_s).not_to match(/%title/)
+      expect(wiki_body.to_s).not_to match(/test/)
+    end
   end
 
 end

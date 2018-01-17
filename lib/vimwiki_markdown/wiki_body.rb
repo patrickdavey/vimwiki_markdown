@@ -13,6 +13,7 @@ class VimwikiMarkdown::WikiBody
   def to_s
     @markdown_body = get_wiki_markdown_contents
     fixlinks
+    remove_tags
     github_markup = GitHub::Markup.render('README.markdown', markdown_body)
     pipeline = HTML::Pipeline.new [
       HTML::Pipeline::SyntaxHighlightFilter,
@@ -57,6 +58,15 @@ class VimwikiMarkdown::WikiBody
   def convert_markdown_local_links!
     @markdown_body = @markdown_body.gsub(/\[.*?\]\(.*?\)/) do |match|
       VimwikiMarkdown::VimwikiLink.new(match, options.input_file, options.extension, options.root_path).to_s
+    end
+  end
+
+  def remove_tags
+    @markdown_body.gsub!(/%template \S+/) do
+      ""
+    end
+    @markdown_body.gsub!(/%title \S+/) do
+      ""
     end
   end
 
