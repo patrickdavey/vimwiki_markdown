@@ -1,3 +1,6 @@
+## 0.2.6 [Jan 18 2018]
+Add %template and %title options
+
 ## 0.2.4 [Jan 01 2017]
 Make directory links work correctly. If you now link to
 a directory [somedir](somedir/) then that link will be preserved
