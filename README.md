@@ -40,7 +40,8 @@ shouldn't be.  Here are links to the relevant bits:
 3. For the moment, remove the call to deleting files `call s:delete_html_files(path_html)` - will work out a way around that later, not there now.
 4. Might be some other things, check the diff in the above commits or open an issue.
 
-
+### Install issues.
+There have been some issues with getting dependencies installed. Before opening an issue, please check if you can use [rvm](http://rvm.io/) to install the gem, as RVM is magic and makes everything work ;)
 
 ### VimWiki Template
 
