@@ -3,30 +3,25 @@ require 'vimwiki_markdown/options'
 
 module VimwikiMarkdown
   describe Options do
-    let(:markdown_file_content) {wiki_template_title_markdown}
-    let(:options) { Options.new }
-    subject {options}
 
     context "no options passed" do
-      before do
+      it "should have default values" do
         allow(File).to receive(:open).and_return(StringIO.new("# title \n ## subtitle"))
-        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+        options = Options.new()
+        expect(options.force).to be(true)
+        expect(options.syntax).to eq('markdown')
+        expect(options.output_fullpath).to eq("~/vimwiki/site_html/index.html")
+        expect(options.template_filename).to eq('~/vimwiki/templates/default.tpl')
       end
-
-      its(:force) { should be(true) }
-      its(:syntax) { should eq('markdown') }
-      its(:output_fullpath) { should eq("#{subject.output_dir}#{File.basename(subject.input_file, ".md")}.html") }
-      its(:template_filename) { should eq('~/vimwiki/templates/default.tpl') }
     end
 
     context "file with tags in it" do
-      before do
-        allow(File).to receive(:open).and_return(StringIO.new(markdown_file_content))
-        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      it "should get information from tags" do
+        allow(File).to receive(:open).and_return(StringIO.new(wiki_template_title_markdown))
+        options = Options.new()
+        expect(options.template_filename).to eq('~/vimwiki/templates/alt_template.tpl')
+        expect(options.title).to eq('Super Cool Title')
       end
-
-      its(:template_filename) { should eq('~/vimwiki/templates/alt_template.tpl') }
-      its(:title) { should eq('Super Cool Title')}
     end
 
   end
