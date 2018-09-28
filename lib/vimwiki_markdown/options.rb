@@ -66,11 +66,15 @@ module VimwikiMarkdown
     end
 
     def title
-      File.basename(input_file, ".md").capitalize
+      File.basename(input_file, "#{extension}").capitalize
     end
 
     def output_fullpath
-      "#{output_dir}#{title.parameterize}.html"
+      "#{output_dir}#{File.basename(input_file, "#{extension}")}.html"
+    end
+
+    def output_fullpath
+      "#{output_dir}#{File.basename(input_file, "#{extension}")}.html"
     end
 
     private
