@@ -82,12 +82,12 @@ module VimwikiMarkdown
     end
 
     def title
-      return File.basename(tags['title'], ".md").split(/ |\_/).map(&:capitalize).join(" ") if @tags['title']
-      File.basename(input_file, ".md").capitalize
+      return File.basename(tags['title'], "#{extension}").split(/ |\_/).map(&:capitalize).join(" ") if @tags['title']
+      File.basename(input_file, "#{extension}").capitalize
     end
 
     def output_fullpath
-      "#{output_dir}#{File.basename(input_file, ".md")}.html"
+      "#{output_dir}#{File.basename(input_file, "#{extension}")}.html"
     end
 
     private
