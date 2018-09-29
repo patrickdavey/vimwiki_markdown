@@ -4,6 +4,10 @@ require 'vimwiki_markdown/options'
 module VimwikiMarkdown
   describe Options do
 
+    before(:each) do
+      allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+    end
+
     context "no options passed" do
       it "should have default values" do
         allow(File).to receive(:open).and_return(StringIO.new("# title \n ## subtitle"))
