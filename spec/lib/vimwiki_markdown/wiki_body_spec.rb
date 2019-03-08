@@ -50,6 +50,13 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).not_to match(/%title/)
       expect(wiki_body.to_s).not_to match(/test/)
     end
-  end
 
+    describe "syntax highlighting" do
+      it "must give correct classes" do
+        allow(wiki_body).to receive(:get_wiki_markdown_contents)
+          .and_return("```bash\n  find ./path -type f -exec sed -i 's/find_this/replace_this/g' {} \\;\n```\n")
+        expect(wiki_body.to_s).to match(/highlight/)
+      end
+    end
+  end
 end

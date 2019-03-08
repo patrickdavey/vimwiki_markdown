@@ -14,12 +14,15 @@ class VimwikiMarkdown::WikiBody
     @markdown_body = get_wiki_markdown_contents
     fixlinks
     remove_tags
-    github_markup = GitHub::Markup.render('README.markdown', markdown_body)
-    pipeline = HTML::Pipeline.new [
+    html = GitHub::Markup.render_s(
+      GitHub::Markups::MARKUP_MARKDOWN,
+      markdown_body
+    )
+    pipeline = HTML::Pipeline.new([
       HTML::Pipeline::SyntaxHighlightFilter,
       HTML::Pipeline::TableOfContentsFilter
-    ]
-    result = pipeline.call(github_markup)
+    ], { scope: "highlight"})
+    result = pipeline.call(html)
     result[:output].to_s
   end
 

@@ -1,5 +1,4 @@
-require 'pygments.rb'
-
+require 'rouge'
 module VimwikiMarkdown
   class Template
 
@@ -31,7 +30,7 @@ module VimwikiMarkdown
 
     def pygments_wrapped_in_tags
       "<style type=\"text/css\">
-        #{Pygments.css('.highlight')}
+        #{::Rouge::Themes::Github.render(scope: '.highlight')}
       </style>"
     end
 

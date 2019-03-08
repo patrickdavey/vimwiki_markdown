@@ -19,17 +19,17 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", "~> 11.2"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "pry", ">= 0.9.12"
-  spec.add_development_dependency "rspec-its", "~> 1.1.0"
+  spec.add_development_dependency "pry", "~> 0.12"
+  spec.add_development_dependency "rspec-its", "~> 1.1"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.6.1"
   spec.add_development_dependency "guard-rspec", "~> 4.3"
 
-  spec.add_runtime_dependency     "activesupport", "~> 4.1.6"
-  spec.add_runtime_dependency     "github-markup", "~> 1.3.0"
-  spec.add_runtime_dependency     "github-markdown", "~> 0.6.8"
-  spec.add_runtime_dependency     "github-linguist", "~> 3.1.5"
-  spec.add_runtime_dependency     "redcarpet", "~> 3.1.2"
-  spec.add_runtime_dependency     "html-pipeline", "~> 1.11.0"
+  spec.add_runtime_dependency     "activesupport", "~> 4.1"
+  spec.add_runtime_dependency     "github-markup", "~> 3.0"
+  spec.add_runtime_dependency     "commonmarker", "~> 0.18.0"
+  spec.add_runtime_dependency     "html-pipeline", "~> 2.0"
+  spec.add_runtime_dependency     "rouge", "~> 3.3"
+  spec.add_runtime_dependency     "escape_utils", "~> 1.2"
 end
