@@ -1,3 +1,11 @@
+## 0.3.1 [March 10 2019]
+Adds the ability to strip the extension correctly from vimwiki files.
+For example, the file index.wiki was converted to index.wiki.html.
+
+Thanks to @bowmanat for the PR.
+
+This may also very likely break existing links, so, watch out there ;)
+
 ## 0.3.0 [March 10 2019]
 Rebuilds vimwiki_markdown against the latest versions of Github/Markup etc.
 
