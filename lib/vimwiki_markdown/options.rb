@@ -26,7 +26,7 @@ module VimwikiMarkdown
 
     attr_reader :force, :syntax, :extension, :output_dir,
                 :input_file, :css_file, :template_path,
-                :template_default, :template_ext, :root_path, :tags
+                :template_default, :template_ext, :root_path
 
 =begin  force : [0/1] overwrite an existing file
           syntax : the syntax chosen for this wiki
@@ -54,26 +54,10 @@ module VimwikiMarkdown
       @template_ext = arguments[TEMPLATE_EXT]
       @root_path = arguments[ROOT_PATH]
       @root_path = "./" if @root_path == "-"
-      @tags = pull_tags
       raise "Must be markdown" unless syntax == 'markdown'
     end
 
-    def get_file_contents
-      file = File.open(input_file, "r")
-      file.read
-    end
-
-    def pull_tags
-      tags = Hash.new
-      get_file_contents.split("\n").each do |li|
-        tags['template'] = li.split.last if (li[/%template \S+./])
-        tags['title'] = li.sub(/%title /, '') if (li[/%title .+/])
-      end
-      return tags
-    end
-
     def template_filename
-      return "#{template_path}#{tags['template']}#{template_ext}" if @tags['template']
       "#{template_path}#{template_default}#{template_ext}"
     end
 
@@ -82,12 +66,11 @@ module VimwikiMarkdown
     end
 
     def title
-      return File.basename(tags['title'], ".md").split(/ |\_/).map(&:capitalize).join(" ") if @tags['title']
       File.basename(input_file, ".md").capitalize
     end
 
     def output_fullpath
-      "#{output_dir}#{File.basename(input_file, ".md")}.html"
+      "#{output_dir}#{title.parameterize}.html"
     end
 
     private

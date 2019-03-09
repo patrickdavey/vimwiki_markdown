@@ -60,17 +60,6 @@ to [this commit](https://github.com/patrickdavey/vimwiki_markdown/commit/8645883
 It will get rewritten with the relative path to the root
 of the site (e.g. `./` or `../../` etc)
 
-#### Using Custom Template Tag
-
-Including a line with `%template <template name>` in any of your Vimwiki pages will will force the generator to use `<template name>.tpl` rather than `default.tpl` for that page.
-
-`<template name>` cannot contain any spaces
-
-#### Using Custom Title Tag
-
-Including a line with `%title <title name>` in any of your Vimwiki pages will force the generator to replace `%title%` in your template file with `<title name>` rather than the name of the file itself.
-*You can have spaces in your titles now!*
-
 ## Contributing
 
 Pull requests are very welcome, especially if you want to implement some of the

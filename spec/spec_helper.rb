@@ -110,16 +110,6 @@ def wiki_index_markdown
 "
 end
 
-def wiki_template_title_markdown
-"
-%title super cool title\n
-%template alt_template\n
-## Todo\n
-  1. add template functionality\n
-  2. add title functionality\n
-"
-end
-
 def wiki_template
 <<-WIKITEMPLATE
 <!DOCTYPE html>

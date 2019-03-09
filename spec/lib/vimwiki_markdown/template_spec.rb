@@ -7,13 +7,11 @@ require 'rspec-html-matchers'
 module VimwikiMarkdown
   describe Template do
     let(:options) { Options.new }
-    let(:markdown_file_content) {wiki_index_markdown}
 
     context "template" do
 
       subject { Template.new(options).to_s }
       before do
-        allow(File).to receive(:open).and_return(StringIO.new(markdown_file_content))
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
         allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(wiki_template))
       end
@@ -24,7 +22,6 @@ module VimwikiMarkdown
 
     context "missing pygments" do
       before do
-        allow(File).to receive(:open).and_return(StringIO.new(markdown_file_content))
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
       end
 
@@ -36,7 +33,6 @@ module VimwikiMarkdown
 
     context "using %root_path%" do
       before do
-        allow(File).to receive(:open).and_return(StringIO.new(markdown_file_content))
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
       end
 
