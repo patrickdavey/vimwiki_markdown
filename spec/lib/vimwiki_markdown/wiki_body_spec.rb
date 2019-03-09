@@ -13,6 +13,7 @@ module VimwikiMarkdown
       allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return(markdown_file_content)
       allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
       expect(wiki_body.to_s).to match(/<a href="books.html">Books<\/a>/)
+      expect(wiki_body.to_s).to match(/<a href="bash-tips.html">Bash Tips<\/a>/)
     end
 
     it "must convert wiki links with separate titles correctly" do
