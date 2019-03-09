@@ -13,6 +13,7 @@ module VimwikiMarkdown
       allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return(markdown_file_content)
       allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
       expect(wiki_body.to_s).to match(/<a href="books.html">Books<\/a>/)
+      expect(wiki_body.to_s).to match(/<a href="bash-tips.html">Bash Tips<\/a>/)
     end
 
     it "must convert wiki links with separate titles correctly" do
@@ -39,17 +40,12 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).to match(/<a href="there.html">there<\/a>/)
     end
 
-    it "must remove template tags" do
-      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("%template test\n")
-      expect(wiki_body.to_s).not_to match(/%template/)
-      expect(wiki_body.to_s).not_to match(/test/)
-    end
-
-    it "must remove title tags" do
-      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("%title test\n")
-      expect(wiki_body.to_s).not_to match(/%title/)
-      expect(wiki_body.to_s).not_to match(/test/)
+    describe "syntax highlighting" do
+      it "must give correct classes" do
+        allow(wiki_body).to receive(:get_wiki_markdown_contents)
+          .and_return("```bash\n  find ./path -type f -exec sed -i 's/find_this/replace_this/g' {} \\;\n```\n")
+        expect(wiki_body.to_s).to match(/highlight/)
+      end
     end
   end
-
 end
