@@ -1,3 +1,17 @@
+## 0.3.0 [March 10 2019]
+Rebuilds vimwiki_markdown against the latest versions of Github/Markup etc.
+
+The tools are somewhat different and so it's quite possible there will be breaking changes here, especially if
+you have embedded HTML tags inside your markdown files. With a later version of https://github.com/github/markup
+we should be able to pass options to commonmark and give ourselves more options.
+
+This also uses rouge for syntax highlighting (fenced code blocks). Finding the documentation for that was fun ;)
+
+### Breaking changes with 0.3
+* This removes the title tag functionality which was introduced in 0.2.6 Unfortunately, having spaces in links meant that the new markdown parsing did not see the link as being valid (at least for [foo bar](foo bar) links). This may be reintroduced later.
+* Requires ruby >= 2.3.8
+
+
 ## 0.2.6 [Jan 18 2018]
 Add %template and %title options
 
