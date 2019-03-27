@@ -1,3 +1,10 @@
+## 0.3.2 [March 28 2019]
+
+Bugfix
+
+Files were changed to be written out using their actual filename, rather than the
+parameterized version, this is fixed now.
+
 ## 0.3.1 [March 10 2019]
 Adds the ability to strip the extension correctly from vimwiki files.
 For example, the file index.wiki was converted to index.wiki.html.

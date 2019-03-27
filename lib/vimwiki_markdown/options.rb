@@ -70,12 +70,9 @@ module VimwikiMarkdown
     end
 
     def output_fullpath
-      "#{output_dir}#{File.basename(input_file, "#{extension}")}.html"
+      "#{output_dir}#{title.parameterize}.html"
     end
 
-    def output_fullpath
-      "#{output_dir}#{File.basename(input_file, "#{extension}")}.html"
-    end
 
     private
 
