@@ -28,18 +28,6 @@ this we use the custom_wiki2html parameter.  My .vimrc looks like this:
 
 The most important part is the *'custom_wiki2html': 'vimwiki_markdown'*
 
-### Fix for vimwiki links.
-In vimwiki at the moment, it deletes any files in the site_html directory which do not match
-against the markdown files (once they are translated into linked html).  Now, in vimwiki_markdown
-we use ActiveSupports paramaterized method, as it's nicer on links.  If you want to have a
-significant speed up, then you need to patch your vimwiki plugin to not delete files it
-shouldn't be.  Here are links to the relevant bits:
-
-1. [Add this function](https://github.com/patrickdavey/vimwiki-1/blob/9ebca2182fcf10e1bbf61abc8b4a535ce790480d/autoload/vimwiki/html.vim#L242-247)
-2. [Make the is_html_uptodate look like this](https://github.com/patrickdavey/vimwiki-1/blob/9ebca2182fcf10e1bbf61abc8b4a535ce790480d/autoload/vimwiki/html.vim#L224-241)
-3. For the moment, remove the call to deleting files `call s:delete_html_files(path_html)` - will work out a way around that later, not there now.
-4. Might be some other things, check the diff in the above commits or open an issue.
-
 ### Install issues.
 There have been some issues with getting dependencies installed. Before opening an issue, please check if you can use [rvm](http://rvm.io/) to install the gem, as RVM is magic and makes everything work ;)
 
@@ -71,6 +59,11 @@ more interesting vimwiki links (e.g. :local etc.)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+## Known Issues
+
+In the `vimwiki_markdown` gem, links are written out using Rails' paramaterized method. That is, a link like "my awesome link" is turned into "my-awesome-link". Vimwikis built-in support for
+checking whether a file needs to be re-generated or not uses a mixture of timestamp and whether the output file exists. Unfortunately, vimwiki _doesn't_ paramaterize their output files, so, quite often there's
+a mismatch in terms of whether a file exists. I had patched previous version of vimwiki, but, I haven't done it with the latest version. If you _want_ to look at it, there's [some information in a previous version of this README](https://github.com/patrickdavey/vimwiki_markdown/blob/4cf18a3fb329895e2062a1a56c83074d215e93c4/README.md#fix-for-vimwiki-links), but, you're on your own ;)
 
 ## License
 
