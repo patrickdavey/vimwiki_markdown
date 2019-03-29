@@ -3,6 +3,7 @@ require 'vimwiki_markdown/options'
 require 'vimwiki_markdown/template'
 require 'vimwiki_markdown/exceptions'
 require 'rspec-html-matchers'
+require 'date'
 
 module VimwikiMarkdown
   describe Template do
@@ -42,6 +43,18 @@ module VimwikiMarkdown
         rendered_template = Template.new(options).to_s
         expect(rendered_template).not_to include("%root_path%")
         expect(rendered_template).to include("./rootStyle.css")
+      end
+    end
+
+    context "using %date" do
+      before do
+        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      end
+
+      it "replaces %date% with todays date" do
+        allow(File).to receive(:open).with(options.template_filename,"r").and_return(StringIO.new(wiki_template))
+        rendered_template = Template.new(options).to_s
+        expect(rendered_template).to include(Date.today.strftime("%e %b %Y"))
       end
     end
   end

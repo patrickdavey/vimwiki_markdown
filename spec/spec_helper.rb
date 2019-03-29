@@ -151,6 +151,7 @@ def wiki_template
     <div class="row">
       <div class="span12">
         <h2 id="title">%title%</h2>
+        <p><small>Page created on %date%</small></p>
         %content%
       </div>
     </div>

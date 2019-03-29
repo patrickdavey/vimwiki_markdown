@@ -48,6 +48,15 @@ to [this commit](https://github.com/patrickdavey/vimwiki_markdown/commit/8645883
 It will get rewritten with the relative path to the root
 of the site (e.g. `./` or `../../` etc)
 
+#### Optional %date% marker.
+
+You can also have a `%date%` marker in your template file
+It will get rewritten with todays date in the format 29 March 2019
+
+#### Optional %nohtml
+
+If you place the text %nohtml anywhere in a wiki page, it will not be processed into html
+
 ## Contributing
 
 Pull requests are very welcome, especially if you want to implement some of the
