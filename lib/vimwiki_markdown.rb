@@ -12,6 +12,9 @@ module VimwikiMarkdown
     options = Options.new
     template_html = Template.new(options)
     body_html = WikiBody.new(options)
+
+    return if body_html.to_s =~ /%nohtml/
+
     combined_body_template = template_html.to_s.gsub('%content%', body_html.to_s)
 
     File.write(options.output_fullpath, combined_body_template)
