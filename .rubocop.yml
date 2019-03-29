@@ -1,0 +1,74 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Layout/IndentHeredoc:
+  Enabled: false
+
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+     - 'Rakefile'
+     - 'spec/**/*.rb'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+  SupportedStyles:
+    - aligned
+    - indented
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 20
+
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false
+  Max: 20
+  Exclude:
+  - "spec/**/*"
+
