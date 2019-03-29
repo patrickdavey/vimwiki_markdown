@@ -62,5 +62,4 @@ class VimwikiMarkdown::WikiBody
       VimwikiMarkdown::VimwikiLink.new(match, options.input_file, options.extension, options.root_path).to_s
     end
   end
-
 end

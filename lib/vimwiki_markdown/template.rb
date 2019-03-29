@@ -1,4 +1,6 @@
 require 'rouge'
+require 'date'
+
 module VimwikiMarkdown
   class Template
 
@@ -24,8 +26,10 @@ module VimwikiMarkdown
     end
 
     def fixtags(template)
-      @template = template.gsub('%title%',title).gsub('%pygments%',pygments_wrapped_in_tags)
-      @template = @template.gsub('%root_path%', root_path)
+      @template = template.gsub('%title%',title)
+                          .gsub('%pygments%',pygments_wrapped_in_tags)
+                          .gsub('%root_path%', root_path)
+                          .gsub('%date%', Date.today.strftime("%e %b %Y"))
     end
 
     def pygments_wrapped_in_tags
