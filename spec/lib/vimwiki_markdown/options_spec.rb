@@ -12,7 +12,6 @@ module VimwikiMarkdown
 
       its(:force) { should be(true) }
       its(:syntax) { should eq('markdown') }
-      its(:output_fullpath) { should eq("#{subject.output_dir}#{subject.title.parameterize}.html") }
       its(:template_filename) { should eq('~/vimwiki/templates/default.tpl') }
 
       describe "extension" do
@@ -31,6 +30,28 @@ module VimwikiMarkdown
           )
 
           expect(Options.new.title).to eq("Index")
+        end
+      end
+
+      describe "#output_fullpath" do
+        it "must rewrite files so that they match the paramaterized title" do
+          expect(Options.new.output_fullpath).to eq("#{subject.output_dir}#{subject.title.parameterize}.html")
+        end
+
+        it "must correctly deal with filenames with spaces in them" do
+          allow_any_instance_of(Options).to receive(:input_file) { "~/foo/name with spaces.md" }
+          expect(Options.new.output_fullpath).to eq("#{subject.output_dir}name-with-spaces.html")
+        end
+
+        it "must correctly deal with filenames with capitalization issues" do
+          allow_any_instance_of(Options).to receive(:input_file) { "~/foo/NAME WITH SPACES.md" }
+          expect(Options.new.output_fullpath).to eq("#{subject.output_dir}name-with-spaces.html")
+        end
+
+        it "must correctly deal with filenames with spaces and a different extension" do
+          allow_any_instance_of(Options).to receive(:extension) { "wiki" }
+          allow_any_instance_of(Options).to receive(:input_file) { "~/foo/name with spaces.wiki" }
+          expect(Options.new.output_fullpath).to eq("#{subject.output_dir}name-with-spaces.html")
         end
       end
     end
