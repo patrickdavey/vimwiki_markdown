@@ -1,5 +1,6 @@
 ## 0.3.3 [March 29 2019]
 Support for %date% and %nohtml tags
+Add information about html_filename_parameterization.
 
 ## 0.3.2 [March 28 2019]
 
