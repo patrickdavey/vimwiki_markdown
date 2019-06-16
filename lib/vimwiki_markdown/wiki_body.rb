@@ -15,8 +15,10 @@ class VimwikiMarkdown::WikiBody
     fixlinks
     html = GitHub::Markup.render_s(
       GitHub::Markups::MARKUP_MARKDOWN,
-      markdown_body
+      markdown_body,
+      options: { commonmarker_opts: [:UNSAFE] }
     )
+
     pipeline = HTML::Pipeline.new([
       HTML::Pipeline::SyntaxHighlightFilter,
       HTML::Pipeline::TableOfContentsFilter

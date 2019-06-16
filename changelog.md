@@ -1,3 +1,6 @@
+## 0.4.0 [June 16 2019]
+Support HTML tags in markdown content again.
+
 ## 0.3.3 [March 29 2019]
 Support for %date% and %nohtml tags
 Add information about html_filename_parameterization.

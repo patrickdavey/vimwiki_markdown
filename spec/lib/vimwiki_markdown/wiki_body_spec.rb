@@ -33,6 +33,12 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).to match(/hello/)
     end
 
+    it "must convert html content correctly" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("<p>hello world</p>")
+      expect(wiki_body.to_s).to include("<p>hello world</p>")
+    end
+
     it "must convert multiple links on the same line correctly" do
       allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("[here](here) [there](there)")
       allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
