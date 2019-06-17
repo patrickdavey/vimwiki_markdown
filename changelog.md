@@ -1,3 +1,6 @@
+## 0.4.1 [June 16 2019]
+Allow "unsafe" HTML tags in markdown content (iframe etc.)
+
 ## 0.4.0 [June 16 2019]
 Support HTML tags in markdown content again.
 

@@ -11,6 +11,8 @@ class VimwikiMarkdown::WikiBody
   end
 
   def to_s
+    hack_replace_commonmarker_proc!
+
     @markdown_body = get_wiki_markdown_contents
     fixlinks
     html = GitHub::Markup.render_s(
@@ -63,5 +65,13 @@ class VimwikiMarkdown::WikiBody
     @markdown_body = @markdown_body.gsub(/\[.*?\]\(.*?\)/) do |match|
       VimwikiMarkdown::VimwikiLink.new(match, options.input_file, options.extension, options.root_path).to_s
     end
+  end
+
+  def hack_replace_commonmarker_proc!
+    GitHub::Markup::Markdown::MARKDOWN_GEMS["commonmarker"] = proc { |content, options: {}|
+      commonmarker_opts = [:GITHUB_PRE_LANG].concat(options.fetch(:commonmarker_opts, []))
+      commonmarker_exts = options.fetch(:commonmarker_exts, [:autolink, :table, :strikethrough])
+      CommonMarker.render_html(content, commonmarker_opts, commonmarker_exts)
+    }
   end
 end
