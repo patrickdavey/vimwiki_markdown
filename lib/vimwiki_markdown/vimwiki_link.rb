@@ -9,13 +9,14 @@
 
 module VimwikiMarkdown
   class VimwikiLink
-    MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<uri>.*)\)/
+    MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<uri>(?:(?!#).)*)(?<fragment>(?:#)?.*)\)/
 
-    attr_reader :title, :uri, :source_markdown_directory, :markdown_extension, :root_path
+    attr_reader :title, :uri, :fragment, :source_markdown_directory, :markdown_extension, :root_path
 
     def initialize(markdown_link, source_markdown_filepath, markdown_extension, root_path)
       @title = markdown_link.match(MARKDOWN_LINK_REGEX)[:title]
       @uri = markdown_link.match(MARKDOWN_LINK_REGEX)[:uri]
+      @fragment = markdown_link.match(MARKDOWN_LINK_REGEX)[:fragment]
       @markdown_extension = markdown_extension
       @root_path = root_path
       @source_markdown_directory = Pathname.new(source_markdown_filepath).dirname
@@ -34,6 +35,8 @@ module VimwikiMarkdown
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
       end
+
+      @uri = "#{uri}#{fragment.empty? ? '' : '#' + fragment.parameterize}"
     end
 
     def vimwiki_markdown_file_exists?
