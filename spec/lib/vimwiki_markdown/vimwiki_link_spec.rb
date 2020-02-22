@@ -13,6 +13,14 @@ module VimwikiMarkdown
       expect(link.uri).to eq("http://www.google.com")
     end
 
+    it "should render fragment-only links correctly" do
+      markdown_link = "[test](#Wiki Heading)"
+
+      link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
+      expect(link.title).to eq("test")
+      expect(link.uri).to eq("#wiki-heading")
+    end
+
     context "with an existing markdown file matching name" do
       let(:existing_file) { "test#{markdown_extension}" }
       let(:existing_file_no_extension) { existing_file.gsub(/#{markdown_extension}$/,"") }
@@ -42,6 +50,14 @@ module VimwikiMarkdown
         link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
         expect(link.title).to eq("test")
         expect(link.uri).to eq("#{existing_file_no_extension}.html")
+      end
+
+      it "must convert same-directory markdown links with url fragments correctly" do
+        markdown_link = "[test](#{existing_file_no_extension}#Wiki Heading)"
+
+        link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
+        expect(link.title).to eq("test")
+        expect(link.uri).to eq("#{existing_file_no_extension}.html#wiki-heading")
       end
 
       context "subdirectory linked files" do
