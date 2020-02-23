@@ -1,3 +1,6 @@
+## 0.4.4 [June 16 2019]
+Allow fragments if they are for local vimwiki links only
+
 ## 0.4.3 [June 16 2019]
 temporarily revoke fragments until we're not altering old links
 
