@@ -9,7 +9,7 @@ module VimwikiMarkdown
 
     it "should leave external links alone" do
       link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
-      expect(link.to_s).to eq (markdown_link)
+      expect(link.to_s).to eq(markdown_link)
     end
     
     it "should not alter fragments which are part of a url" do
@@ -19,11 +19,11 @@ module VimwikiMarkdown
       expect(link.to_s).to eq("[test](http://foo#Bar)")
     end
 
-    it "should render fragment-only links correctly" do
-      markdown_link = "[test](#Wiki Heading)"
+    it "should not alter fragment-only links" do
+      markdown_link = "[test](#GTD)"
 
       link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path)
-      expect(link.to_s).to eq("[test](#wiki-heading)")
+      expect(link.to_s).to eq("[test](#GTD)")
     end
 
     context "with an existing markdown file matching name" do

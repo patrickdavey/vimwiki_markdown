@@ -31,13 +31,10 @@ module VimwikiMarkdown
     private
 
     def rewrite_local_links!
-      if vimwiki_markdown_file_exists? || uri.empty?
-        @fragment = "#{fragment.empty? ? '' : '#' + fragment.parameterize}"
-      end
-
       if vimwiki_markdown_file_exists?
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
+        @fragment = fragment.parameterize.prepend("#") unless fragment.empty?
       end
     end
 
