@@ -11,15 +11,16 @@ module VimwikiMarkdown
   class VimwikiLink
     MARKDOWN_LINK_REGEX = /\[(?<title>.*)\]\((?<uri>(?:(?!#).)*)(?<fragment>(?:#)?.*)\)/
 
-    attr_reader :title, :uri, :fragment, :source_markdown_directory, :markdown_extension, :root_path
+    attr_reader :title, :uri, :fragment, :source_markdown_directory, :markdown_extension, :root_path, :output_dir
 
-    def initialize(markdown_link, source_markdown_filepath, markdown_extension, root_path)
+    def initialize(markdown_link, source_markdown_filepath, markdown_extension, root_path, output_dir)
       @title = markdown_link.match(MARKDOWN_LINK_REGEX)[:title]
       @uri = markdown_link.match(MARKDOWN_LINK_REGEX)[:uri]
       @fragment = markdown_link.match(MARKDOWN_LINK_REGEX)[:fragment]
       @markdown_extension = markdown_extension
       @root_path = root_path
       @source_markdown_directory = Pathname.new(source_markdown_filepath).dirname
+      @output_dir = output_dir
       rewrite_local_links!
     end
 
@@ -35,7 +36,29 @@ module VimwikiMarkdown
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
         @fragment = fragment.parameterize.prepend("#") unless fragment.empty?
+      elsif  /^file:/.match?(uri)
+        # begins with file: -> force absolute path if file exists
+        @uri = "#{source_markdown_directory + uri}" if uri_relative_path_exists?
+      elsif  /^local:/.match?(uri)
+        # begins with local: -> force relative path if file exists
+        source = Pathname.new(source_markdown_directory)
+        output = Pathname.new(output_dir)
+        @uri = "#{source.relative_path_from(output) + uri}" if uri_relative_path_exists?
       end
+    end
+
+    def uri_relative_path_exists?
+      # remove file: or local: prefix
+      tmp = uri.sub(/^file:|^local:/, "") if uri.present?
+      path, title = tmp.split(/\.?\s+\"/)  # handle image title
+      path = Pathname.new(path)
+      path = path.realpath.relative_path_from(source_markdown_directory) if path.absolute?
+      if File.exist?(source_markdown_directory + path)
+        title = "\"#{title}" unless title.nil? || title.empty?
+        @uri = "#{path.to_s.gsub(/\ /, '%20')} #{title}"
+        return true
+      end
+      false
     end
 
     def vimwiki_markdown_file_exists?
