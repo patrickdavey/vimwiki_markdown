@@ -56,14 +56,21 @@ of the site (e.g. `./` or `../../` etc)
 You can also have a `%date%` marker in your template file
 It will get rewritten with todays date in the format 29 March 2019
 
+#### Support for :local and :file links
+
+We have partial support for the `:local` and `:file` link types for vimwiki.
+If you are editing `foo.md` (in the root dir of your wiki) and you are linking to `bar.txt` stored in the same directory as `foo.md` you can do:
+
+* `[link text](local:bar.txt)` when output to HTML becomes <a href="../bar.txt">link text</a>
+* `[link text](file:bar.txt)` when output to HTML becomes <a href="/absolute/path/to/file">link text</a>
+
 #### Optional %nohtml
 
 If you place the text %nohtml anywhere in a wiki page, it will not be processed into html
 
 ## Contributing
 
-Pull requests are very welcome, especially if you want to implement some of the
-more interesting vimwiki links (e.g. :local etc.)
+Pull requests are very welcome
 
 1. Fork it ( https://github.com/patrickdavey/vimwiki_markdown/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
