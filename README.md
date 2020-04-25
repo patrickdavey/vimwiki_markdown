@@ -61,8 +61,8 @@ It will get rewritten with todays date in the format 29 March 2019
 We have partial support for the `:local` and `:file` link types for vimwiki.
 If you are editing `foo.md` (in the root dir of your wiki) and you are linking to `bar.txt` stored in the same directory as `foo.md` you can do:
 
-* `[link text](local:bar.txt)` when output to HTML becomes <a href="../bar.txt">link text</a>
-* `[link text](file:bar.txt)` when output to HTML becomes <a href="/absolute/path/to/file">link text</a>
+* `[link text](local:bar.txt)` when output to HTML becomes `<a href="../bar.txt">link text</a>`
+* `[link text](file:bar.txt)` when output to HTML becomes `<a href="/absolute/path/to/file">link text</a>`
 
 #### Optional %nohtml
 
