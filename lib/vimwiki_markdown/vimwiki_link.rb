@@ -36,10 +36,10 @@ module VimwikiMarkdown
         path = Pathname.new(uri)
         @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
         @fragment = fragment.parameterize.prepend("#") unless fragment.empty?
-      elsif  /^file:/.match?(uri)
+      elsif  /^file:/.match(uri)
         # begins with file: -> force absolute path if file exists
         @uri = "#{source_markdown_directory + uri}" if uri_relative_path_exists?
-      elsif  /^local:/.match?(uri)
+      elsif  /^local:/.match(uri)
         # begins with local: -> force relative path if file exists
         source = Pathname.new(source_markdown_directory)
         output = Pathname.new(output_dir)
