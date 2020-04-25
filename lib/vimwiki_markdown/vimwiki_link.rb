@@ -53,9 +53,10 @@ module VimwikiMarkdown
       path, title = tmp.split(/\.?\s+\"/)  # handle image title
       path = Pathname.new(path)
       path = path.realpath.relative_path_from(source_markdown_directory) if path.absolute?
+
       if File.exist?(source_markdown_directory + path)
         title = "\"#{title}" unless title.nil? || title.empty?
-        @uri = "#{path.to_s.gsub(/\ /, '%20')} #{title}"
+        @uri = "#{path.to_s.gsub(/\ /, '%20')} #{title}".strip
         return true
       end
       false

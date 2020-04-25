@@ -6,7 +6,7 @@ require 'rspec-html-matchers'
 module VimwikiMarkdown
   describe WikiBody do
 
-    let(:wiki_body) { WikiBody.new(double(:options, input_file: 'blah', extension: 'md', root_path: '-')) }
+    let(:wiki_body) { WikiBody.new(double(:options, input_file: 'blah', extension: 'md', root_path: '-', output_dir: ".")) }
     let(:markdown_file_content) { wiki_index_markdown }
 
     it "must convert wiki links" do
