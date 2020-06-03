@@ -107,6 +107,28 @@ def wiki_index_markdown
 
 > this is a blockquote
 > without a linebreak
+
+## Test for checks
+
+- [ ] This is one line
+- [X] This is a checked line
+- [ ] This is a parent line 1
+  - [ ] This is a child line 1
+  - [ ] This is a child line 2
+- [.] This is a parent line 2
+  - [X] This is a child line 1
+  - [ ] This is a child line 2
+  - [ ] This is a child line 3
+- [o] This is a parent line 2
+  - [X] This is a child line 1
+  - [X] This is a child line 2
+  - [ ] This is a child line 3
+- [O] This is a parent line 3
+  - [X] This is a child line 1
+  - [X] This is a child line 2
+  - [X] This is a child line 3
+  - [ ] This is a child line 4
+
 "
 end
 

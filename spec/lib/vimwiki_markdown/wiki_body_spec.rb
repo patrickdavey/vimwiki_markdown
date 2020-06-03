@@ -52,6 +52,36 @@ module VimwikiMarkdown
       expect(wiki_body.to_s).to match(/<a href="there.html">there<\/a>/)
     end
 
+    it "must enrich task list unchecked" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("- [ ] This is one line")
+      expect(wiki_body.to_s).to match(/<li class="done0"> This is one line<\/li>/)
+    end
+
+    it "must enrich task list checked" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("- [X] This is a checked line")
+      expect(wiki_body.to_s).to match(/<li class="done4"> This is a checked line<\/li>/)
+    end
+
+    it "must enrich task list parent 1" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("- [.] This is a parent 1 line")
+      expect(wiki_body.to_s).to match(/<li class="done1"> This is a parent 1 line<\/li>/)
+    end
+
+    it "must enrich task list parent 2" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("- [o] This is a parent 2 line")
+      expect(wiki_body.to_s).to match(/<li class="done2"> This is a parent 2 line<\/li>/)
+    end
+
+    it "must enrich task list parent 3" do
+      allow_any_instance_of(VimwikiMarkdown::VimwikiLink).to receive(:vimwiki_markdown_file_exists?).and_return(true)
+      allow(wiki_body).to receive(:get_wiki_markdown_contents).and_return("- [O] This is a parent 3 line")
+      expect(wiki_body.to_s).to match(/<li class="done3"> This is a parent 3 line<\/li>/)
+    end
+
     describe "syntax highlighting" do
       it "must give correct classes" do
         allow(wiki_body).to receive(:get_wiki_markdown_contents)
