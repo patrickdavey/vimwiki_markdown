@@ -70,7 +70,7 @@ class VimwikiMarkdown::WikiBody
   def hack_replace_commonmarker_proc!
     GitHub::Markup::Markdown::MARKDOWN_GEMS["commonmarker"] = proc { |content, options: {}|
       commonmarker_opts = [:GITHUB_PRE_LANG].concat(options.fetch(:commonmarker_opts, []))
-      commonmarker_exts = options.fetch(:commonmarker_exts, [:autolink, :table, :strikethrough])
+      commonmarker_exts = options.fetch(:commonmarker_exts, [:autolink, :table, :strikethrough, :tasklist])
       CommonMarker.render_html(content, commonmarker_opts, commonmarker_exts)
     }
   end
