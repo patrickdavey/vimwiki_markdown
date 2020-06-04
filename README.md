@@ -6,6 +6,15 @@ to be converted to HTML.
 
 It is currently a work in progress (but working for me ;)
 
+## Example
+It turns this:
+
+![markdown](A.png)
+
+into
+
+![finished](B.png)
+
 ## Requirements
 
 Ruby installed on your computer & up to date version of vimwiki
