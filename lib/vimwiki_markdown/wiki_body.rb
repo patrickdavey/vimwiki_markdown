@@ -25,8 +25,9 @@ class VimwikiMarkdown::WikiBody
       HTML::Pipeline::SyntaxHighlightFilter,
       HTML::Pipeline::TableOfContentsFilter
     ], { scope: "highlight"})
-    result = pipeline.call(html)
-    result[:output].to_s
+    @result = pipeline.call(html)
+    @result = @result[:output].to_s
+    enrich_li_class!
   end
 
 
@@ -73,5 +74,16 @@ class VimwikiMarkdown::WikiBody
       commonmarker_exts = options.fetch(:commonmarker_exts, [:autolink, :table, :strikethrough])
       CommonMarker.render_html(content, commonmarker_opts, commonmarker_exts)
     }
+  end
+
+  def enrich_li_class!
+    syms_hash = { " ]" => 0, ".]" => 1, "o]" => 2, "O]" => 3, "X]" => 4 }
+    checkbox = /<li>\s*\[[\s.oOX]\]/
+    checkbox_start = /<li>\s*\[/
+    @result.gsub!(checkbox) do |m|
+      m.sub(checkbox_start, '<li class="done')
+        .sub(/[\s.oOX\]]*$/, syms_hash) << '">'
+    end
+    @result
   end
 end
