@@ -56,6 +56,9 @@ of the site (e.g. `./` or `../../` etc)
 You can also have a `%date%` marker in your template file
 It will get rewritten with todays date in the format 29 March 2019
 
+#### Support for tasklists
+Vimwiki has support for complex todo lists which you can [read about in their help.txt](https://github.com/vimwiki/vimwiki/blob/619f04f89861c58e5a6415a4f83847752928252d/doc/vimwiki.txt#L1768). We do support turning them into HTML. This is _slightly different_ from the way that GitHub checklists are rendered, but, the syntax is a subset of GitHub lists so it should be fine. You can read about it in the [issue](https://github.com/patrickdavey/vimwiki_markdown/issues/27), but basically it should work fine.  You will want to add `styles` in for the various states that the todo lists can be in. The easiest way is to simply add the `styles` into your template. You can see the styles [in the sample template here](https://github.com/patrickdavey/vimwiki_markdown/blob/293f99e656819b9c5ecc0c831698ce58904eb774/example_files/default.tpl#L7-L45)
+
 #### Support for :local and :file links
 
 We have partial support for the `:local` and `:file` link types for vimwiki.

@@ -1,5 +1,8 @@
+## 0.6.0 [April 26 2020]
+Support for todo lists with enhanced state options. Thanks to @primercuervo
+
 ## 0.5.0 [April 26 2020]
-Partial support for `local` and `file` links in urls. Thanks to @tfachmann for [the PR](https://github.com/patrickdavey/vimwiki_markdown/pull/26).
+Partial support for `local` and `file` links in urls. Thanks to @tfachmann for the PR
 
 ## 0.4.4 [June 16 2019]
 Allow fragments if they are for local vimwiki links only
