@@ -1,3 +1,7 @@
+## 0.7.0 [July 8 2021]
+Fixes an issue whereby non english filenames were being replaced with empty strings
+see https://github.com/patrickdavey/vimwiki_markdown/pull/35
+
 ## 0.6.0 [April 26 2020]
 Support for todo lists with enhanced state options. Thanks to @primercuervo
 
