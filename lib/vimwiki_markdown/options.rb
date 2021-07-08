@@ -70,7 +70,8 @@ module VimwikiMarkdown
     end
 
     def output_fullpath
-      "#{output_dir}#{title.parameterize}.html"
+      filename = title.parameterize =~ /^\s*$/ ? title : title.parameterize
+      "#{output_dir}#{filename}.html"
     end
 
 

@@ -34,7 +34,12 @@ module VimwikiMarkdown
     def rewrite_local_links!
       if vimwiki_markdown_file_exists?
         path = Pathname.new(uri)
-        @uri = "#{path.dirname + path.basename(markdown_extension).to_s.parameterize}.html"
+
+        link_path = path.basename(markdown_extension).to_s.parameterize
+
+        link_path = path.basename(markdown_extension).to_s if link_path.match(/^\s*$/)
+
+        @uri = "#{path.dirname + link_path}.html"
         @fragment = fragment.parameterize.prepend("#") unless fragment.empty?
       elsif  /^file:/.match(uri)
         # begins with file: -> force absolute path if file exists

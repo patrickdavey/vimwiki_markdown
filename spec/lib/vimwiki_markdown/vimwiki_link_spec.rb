@@ -68,6 +68,17 @@ module VimwikiMarkdown
         expect(link.to_s).to eq("[test](#{existing_file_no_extension}.html#wiki-heading)")
       end
 
+      context "with chinese or unparamaterizable chars" do
+        let(:existing_file) { "世界#{markdown_extension}" }
+
+        it "must convert same-directory markdown links without paramaterization correctly" do
+          markdown_link = "[test](#{existing_file_no_extension})"
+
+          link = VimwikiLink.new(markdown_link, source_filepath, markdown_extension, root_path, output_dir)
+          expect(link.to_s).to eq("[test](#{existing_file_no_extension}.html)")
+        end
+      end
+
       context "subdirectory linked files" do
         let(:existing_file) { "subdirectory/test.md" }
 

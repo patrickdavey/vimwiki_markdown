@@ -43,6 +43,11 @@ module VimwikiMarkdown
           expect(Options.new.output_fullpath).to eq("#{subject.output_dir}name-with-spaces.html")
         end
 
+        it "must not change filenames if paramteriezed returns an empty string" do
+          allow_any_instance_of(Options).to receive(:input_file) { "~/foo/世界.md" }
+          expect(Options.new.output_fullpath).to eq("#{subject.output_dir}世界.html")
+        end
+
         it "must correctly deal with filenames with capitalization issues" do
           allow_any_instance_of(Options).to receive(:input_file) { "~/foo/NAME WITH SPACES.md" }
           expect(Options.new.output_fullpath).to eq("#{subject.output_dir}name-with-spaces.html")
