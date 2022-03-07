@@ -1,3 +1,6 @@
+## 0.8.1 [March 7 2022]
+Update commonmarker version, fixes security issue!
+
 ## 0.8.0 [March 7 2022]
 Fixes an issue where VimwikiTOC generated table of contents where there are duplicate heading names did not match the output HTML from the Github pipeline.
 
