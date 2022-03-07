@@ -1,3 +1,10 @@
+## 0.8.0 [March 7 2022]
+Fixes an issue where VimwikiTOC generated table of contents where there are duplicate heading names did not match the output HTML from the Github pipeline.
+
+This means any generated (dupliate) bookmarks are going to be broken though, so, this is backwardly incompatible
+
+see https://github.com/patrickdavey/vimwiki_markdown/pull/39
+
 ## 0.7.0 [July 8 2021]
 Fixes an issue whereby non english filenames were being replaced with empty strings
 see https://github.com/patrickdavey/vimwiki_markdown/pull/35

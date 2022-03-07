@@ -3,6 +3,7 @@ require 'github/markup'
 require 'html/pipeline'
 require 'pathname'
 require "vimwiki_markdown/vimwiki_link"
+require "vimwiki_markdown/vimwiki_toc_filter"
 
 class VimwikiMarkdown::WikiBody
 
@@ -23,7 +24,7 @@ class VimwikiMarkdown::WikiBody
 
     pipeline = HTML::Pipeline.new([
       HTML::Pipeline::SyntaxHighlightFilter,
-      HTML::Pipeline::TableOfContentsFilter
+      VimwikiTOCFilter
     ], { scope: "highlight"})
     @result = pipeline.call(html)
     @result = @result[:output].to_s
