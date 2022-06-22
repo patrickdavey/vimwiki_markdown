@@ -1,3 +1,7 @@
+## 0.8.2 [22 June 2022]
+Remove deprecation warning for EscapeUtils.escape_html
+see https://github.com/patrickdavey/vimwiki_markdown/pull/43
+
 ## 0.8.1 [March 7 2022]
 Update commonmarker version, fixes security issue!
 
