@@ -1,3 +1,6 @@
+## 0.9.0 [02 April 2023]
+Add support for dark mode. Drop support for ruby < 2.7
+
 ## 0.8.2 [22 June 2022]
 Remove deprecation warning for EscapeUtils.escape_html
 see https://github.com/patrickdavey/vimwiki_markdown/pull/43

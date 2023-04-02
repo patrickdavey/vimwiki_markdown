@@ -184,5 +184,9 @@ WIKITEMPLATE
 end
 
 def template_missing_pygments
-  wiki_template.gsub!('%pygments%','')
+  wiki_template.gsub!("%pygments%", "")
+end
+
+def dark_pygments
+  wiki_template.gsub!("%pygments%", "%dark_pygments%")
 end

@@ -32,6 +32,18 @@ module VimwikiMarkdown
       end
     end
 
+    context "dark pygments" do
+      before do
+        allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)
+      end
+
+      it "should raise an invalid exception for missing pygments" do
+        allow(File).to receive(:open).with(options.template_filename, "r").and_return(StringIO.new(dark_pygments))
+        expect(Rouge::Themes::Github).to receive(:dark!) { true }
+        Template.new(options).to_s
+      end
+    end
+
     context "using %root_path%" do
       before do
         allow(Options).to receive(:arguments).and_return(Options::DEFAULTS)

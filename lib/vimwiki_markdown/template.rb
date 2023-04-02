@@ -33,7 +33,8 @@ module VimwikiMarkdown
     end
 
     def pygments_wrapped_in_tags
-      Rouge::Themes::Github.dark!
+      Rouge::Themes::Github.dark! if dark_template?
+
       "<style type=\"text/css\">
         #{::Rouge::Themes::Github.render(scope: '.highlight')}
       </style>"
@@ -48,7 +49,17 @@ module VimwikiMarkdown
     end
 
     def validate_template
-      raise MissingRequiredParamError.new("ERROR: vimwiki template must contain %pygments% placeholder token.  Please visit https://github.com/patrickdavey/vimwiki_markdown for more information") unless @template =~ /%pygments%/
+      return if dark_template? || regular_template?
+
+      raise MissingRequiredParamError.new("ERROR: vimwiki template must contain %pygments% placeholder token.  Please visit https://github.com/patrickdavey/vimwiki_markdown for more information")
+    end
+
+    def dark_template?
+      @template =~ /%dark_pygments%/
+    end
+
+    def regular_template?
+      @template =~ /%pygments%/
     end
   end
 end

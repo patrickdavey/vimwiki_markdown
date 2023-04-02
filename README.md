@@ -49,7 +49,7 @@ It is a requirement that your template file contain a placeholder
 for the syntax highlighting code to be placed.  In order to do this,
 open up your default.tpl (or whatever your template file is called)
 and ensure that before the closing </head> tag you put
-`%pygments%`
+`%pygments%`.  You also have the option to put `%dark_pygments%` if you want to have "dark mode" syntax highlighting.
 
 A sample tpl file is available here https://raw.githubusercontent.com/patrickdavey/vimwiki_markdown/master/example_files/default.tpl
 
