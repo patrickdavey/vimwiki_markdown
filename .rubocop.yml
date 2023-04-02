@@ -16,14 +16,11 @@ Style/SymbolArray:
 Style/SafeNavigation:
   Enabled: false
 
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 
 Layout/FirstParameterIndentation:
   EnforcedStyle: consistent
-
-Rails/DynamicFindBy:
-  Enabled: false
 
 Layout/EmptyLines:
   Enabled: false
