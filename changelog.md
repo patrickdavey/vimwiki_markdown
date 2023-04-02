@@ -1,3 +1,6 @@
+## 0.9.1 [02 April 2023]
+Bugfix that both pygments and dark_pygments placeholers were required.
+
 ## 0.9.0 [02 April 2023]
 Add support for dark mode. Drop support for ruby < 2.7
 
