@@ -1,0 +1,29 @@
+---
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+jobs:
+  # SQLITE
+  testrunner:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ['2.7', '3.0', '3.1']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Run tests
+        run: |
+          bundle exec rspec spec
