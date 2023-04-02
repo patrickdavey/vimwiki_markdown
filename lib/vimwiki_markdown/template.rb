@@ -33,6 +33,7 @@ module VimwikiMarkdown
     end
 
     def pygments_wrapped_in_tags
+      Rouge::Themes::Github.dark!
       "<style type=\"text/css\">
         #{::Rouge::Themes::Github.render(scope: '.highlight')}
       </style>"

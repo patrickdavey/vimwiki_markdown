@@ -31,6 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency     "github-markup", "~> 3.0"
   spec.add_runtime_dependency     "commonmarker", "~> 0.23.4"
   spec.add_runtime_dependency     "html-pipeline", "~> 2.0"
-  spec.add_runtime_dependency     "rouge", "~> 3.3"
+  spec.add_runtime_dependency     "rouge", "~> 4.0"
   spec.add_runtime_dependency     "escape_utils", "~> 1.2"
 end
