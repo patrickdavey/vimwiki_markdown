@@ -1,3 +1,6 @@
+## 0.9.2 [02 April 2023]
+Just bump activesupport version for security advisories
+
 ## 0.9.1 [02 April 2023]
 Bugfix that both pygments and dark_pygments placeholers were required.
 

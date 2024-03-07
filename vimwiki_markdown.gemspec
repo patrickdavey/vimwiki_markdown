@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "solargraph"
 
-  spec.add_runtime_dependency     "activesupport", "~> 4.1"
+  spec.add_runtime_dependency     "activesupport", "~> 6.1"
   spec.add_runtime_dependency     "commonmarker", "~> 0.23.4"
   spec.add_runtime_dependency     "escape_utils", "~> 1.2"
   spec.add_runtime_dependency     "github-markup", "~> 3.0"
