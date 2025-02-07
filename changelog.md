@@ -1,3 +1,6 @@
+## 0.9.3 [08 Feb 2025]
+Add a --version flag to the command line tool
+
 ## 0.9.2 [02 April 2023]
 Just bump activesupport version for security advisories
 
